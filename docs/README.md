@@ -1,1 +1,1 @@
-Documentation of tutorials are a mixture of MongoUniversity, YouTube and Udemy tutorials I have followed. This consolidates what I have learnt and puts into one place all the information to set-up and run a side project with persisting data from a cloud-based Mongo Collection.
+npm install body-parser helmet cors dotenv nodemon express-router graphql express-graphql lodash
