@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const _ = require('lodash');
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLInt, GraphQLID } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLInt, GraphQLID, GraphQLList } = graphql;
 
 
 const books = [
@@ -25,6 +25,7 @@ const authors = [
 
 const BookType = new GraphQLObjectType({
     name: 'Book',
+    // void function to call the fields due to call-stack
     fields: ( ) => ({
         // id: { type: GraphQLString },
         id: { type: graphql.GraphQLID },
@@ -49,7 +50,22 @@ const AuthorType = new GraphQLObjectType({
     fields: ( ) => ({
         id: { type: graphql.GraphQLID },
         name: { type: GraphQLString },
-        century: { type: GraphQLInt }
+        century: { type: GraphQLInt },
+    // Link one author to a book
+    // books: {
+    //     type: BookType
+    // }
+      // Link author to a list of books with a constructor
+    books: {
+        type: new GraphQLList(BookType),
+    resolve(parent, args){
+        // console.log(parent)
+        // return _.filter(books, {authorId: parent.id})
+        // with ES6
+               return books.filter(book => book.authorId === parent.id)
+               
+       }
+    }
     })
 });
 
@@ -64,9 +80,11 @@ const RootQuery = new GraphQLObjectType({
             // get request server-side data - source agnostic
             resolve(parent, args){
                 // with lodash
-                return _.find(books, { id: args.id });
+                // console.log(parent)
+                // return _.find(books, { id: args.id });
                 // with ES6
-                // return books.find(book => book.id === args.id)
+                return books.find(book => book.id === args.id)
+                
             }
     },
     // author object
@@ -74,11 +92,26 @@ const RootQuery = new GraphQLObjectType({
         type: AuthorType,
         args: { id: { type: GraphQLID } },
         resolve(parent, args){
+            // console.log(parent)
          // with ES6
                 return authors.find(author => author.id === args.id)
+               
+        }
+    },
+    // books and authors as lists
+    books: {
+        type: new GraphQLList(BookType),
+        resolve(parent, args){
+            return books;
+        }
+    },
+    authors: {
+        type: new GraphQLList(AuthorType),
+        resolve(parent, args){
+            return authors;
         }
     }
-} 
+}
 });
 
 module.exports = new GraphQLSchema({
