@@ -5,6 +5,7 @@ const {graphqlHTTP} = require('express-graphql');
 // site security
 const cors = require('cors');
 const helmet = require('helmet');
+const mongoose = require("mongoose")
 const app = express();
 
 // files
@@ -21,5 +22,13 @@ app.use('/graphql', graphqlHTTP({
 // });
 app.use(cors());
 app.use(helmet());
+
+
+mongoose.connect(``, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }) .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err, "DB: Not connected Check cloud connection, password, IP address"));
 
 app.listen(4000, () => console.log(`app server connected on port ${port}`));
