@@ -1,0 +1,227 @@
+.radio-1 {
+    padding: 10px;
+    margin: 10px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 0.1em solid brown;
+  }
+  
+  .radio-1::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    box-shadow: inset 0.5em 0.5em brown;
+    border-radius: 50%;
+    transition: 180ms transform ease-in-out;
+    transform: scale(0);
+  }
+  
+  .search {
+    width: 100%;
+    height: auto;
+    border: solid grey 2px;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 2px;
+    outline: none;
+  }
+  
+  .search:focus {
+    background-color: navajowhite;
+    color: darkgray;
+  }
+  
+  .text-box {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    color: black;
+  }
+  .input-one {
+    background-color: white;
+    border: solid grey 2px;
+    border-radius: 2px;
+    color: darkgray;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    height: 100px;
+    width: 50%;
+  }
+  
+  /* Info */
+  .input-1small {
+    background-color: white;
+    border: solid grey 0.5px;
+    border-radius: 2px;
+    color: darkgray;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
+    height: 40px;
+    width: 80%;
+    float: right;
+  }
+  
+  .inpt-1m {
+    background-color: white;
+    border: solid grey 0.5px;
+    border-radius: 2px;
+    color: darkgray;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
+    height: 40px;
+    width: 75%;
+    float: right;
+  }
+  
+  .inpt-1l {
+    background-color: white;
+    border: solid grey 0.5px;
+    border-radius: 2px;
+    color: darkgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+    float: right;
+  }
+  
+  /* Success */
+  .inpt-2s {
+    background-color: silver;
+    border: solid lightblue 0.5px;
+    border-radius: 2px;
+    color: darkgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
+    height: 40px;
+    width: 50%;
+  }
+  
+  .inpt-2m {
+    background-color: silver;
+    border: solid lightblue 0.5px;
+    border-radius: 2px;
+    color: darkgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
+    height: 40px;
+    width: 75%;
+  }
+  .inpt-2l {
+    background-color: silver;
+    border: solid lightblue 0.5px;
+    border-radius: 2px;
+    color: darkgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline: none;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+  }
+  
+  /* Danger */
+  .inpt-3s {
+    background-color: whitesmoke;
+    border: solid 2px grey;
+    border-radius: 4px;
+    color: lightgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline-color: red;
+    padding: 10px;
+    height: 40px;
+    width: 50%;
+  }
+  
+  .inpt-3m {
+    background-color: whitesmoke;
+    border: solid 2px grey;
+    border-radius: 4px;
+    color: lightgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline-color: red;
+    padding: 10px;
+    height: 40px;
+    width: 75%;
+  }
+  
+  .inpt-3l {
+    background-color: whitesmoke;
+    border: solid 2px grey;
+    border-radius: 4px;
+    color: lightgray;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 10px;
+    outline-color: red;
+    padding: 10px;
+    height: 40px;
+    width: 100%;
+  }
+  
+  .inpt-1s:focus,
+  .inpt-1m:focus,
+  .inpt-1l:focus,
+  .inpt-2s:focus,
+  .inpt-2m:focus,
+  .inpt-2l:focus {
+    background-color: whitesmoke;
+    color: brown;
+  }
+  
+  .inpt-3s:focus,
+  .inpt-3m:focus,
+  .inpt-3l:focus {
+    background-color: lightpink;
+    color: darkgray;
+  }
+  
+  .password-field-1 {
+    height: 10px;
+    width: 20%;
+    margin: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: solid black 0.5px;
+    border-radius: 8px;
+    outline: none;
+  }
+  
+  .password-field-2 {
+    height: 10px;
+    width: 25%;
+    margin: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: solid red 2px;
+    outline: none;
+  }
+  

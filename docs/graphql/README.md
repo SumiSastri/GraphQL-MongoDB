@@ -15,3 +15,5 @@ Lists[https://www.youtube.com/watch?v=jflhB57loAU&list=PL4cUxeGkcC9iK6Qhn-QLcXCX
 MongoDB-Mongoose set up[]
 
 Mutations: [https://www.youtube.com/watch?v=DU77lbBPfBI&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=18]
+
+Apollo client set up[https://www.youtube.com/watch?v=8Pyr82Qbjow&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=25]
