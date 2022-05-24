@@ -4,7 +4,7 @@
 - In your repo create a server side folder 
 
 cd server and install
-`npm install express helmet cors dotenv nodemon express-router graphql express-graphql lodash mongoose --save-dev`
+`npm install express helmet cors dotenv nodemon express-router graphql express-graphql lodash lodash.flowright mongoose --save-dev`
 
 # Scripts:
 
