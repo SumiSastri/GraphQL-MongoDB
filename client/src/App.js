@@ -3,8 +3,8 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
 import './App.css';
-import BookList from './pages/BookList';
-import AddBook from './forms/AddBook';
+import BooksIndex from './content-pages/books/BooksIndex';
+
 
 // apollo client setup
 const client = new ApolloClient({
@@ -16,8 +16,8 @@ function App() {
     <ApolloProvider client={client}>
     <div className="App">
       <h1>MERN Stack with GraphQL-Apollo Server</h1>
-      <BookList/>
-      <AddBook/>
+      <BooksIndex/>
+
     </div>
     </ApolloProvider>
   );

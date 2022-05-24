@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
 
-import FormInput from "../components/FormInput/FormInput"
-
-const getAuthorsQuery = gql`
-    {
-        authors {
-            name
-            id
-        }
-    }
-`;
+import FormInput from "../../../common-components/forms/FormInput"
+import {getAuthorsQuery} from "../../../../utils/queries"
 
 class AddBook extends Component {
     displayAuthors(){
