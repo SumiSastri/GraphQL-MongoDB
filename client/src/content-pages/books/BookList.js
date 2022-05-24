@@ -6,7 +6,7 @@ import Loading from "../common-components/loading/Loading"
 import {getBooksQuery} from "../../utils/queries"
 
 class BookList extends Component {
-    
+    // async await?  
     displayBooks(){
         let data = this.props.data;
         if(data.loading){
