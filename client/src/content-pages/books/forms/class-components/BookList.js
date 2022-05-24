@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 // binds grapql queries to react
-import { graphql } from 'react-apollo';
+// import {gql} from "@apollo/client";
 
-import Loading from "../common-components/loading/Loading"
-import {getBooksQuery} from "../../utils/queries"
+import Loading from "../../../common-components/loading/Loading"
+// import {getBooksQuery} from "../../utils/queries"
 
-class BookList extends Component {
+export default class BookList extends Component {
     // async await?  
     displayBooks(){
         let data = this.props.data;
@@ -33,4 +33,4 @@ class BookList extends Component {
     }
 }
 // binds graphlql to the component 
-export default graphql(getBooksQuery)(BookList);
+// export default gql(getBooksQuery)(BookList);

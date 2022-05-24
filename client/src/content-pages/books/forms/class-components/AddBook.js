@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+// import { graphql } from 'react-apollo';
 
 import FormInput from "../../../common-components/forms/FormInput"
-import {getAuthorsQuery} from "../../../../utils/queries"
-class AddBook extends Component { 
+// import {getAuthorsQuery, addBookMutation} from "../../../../utils/queries"
+export default class AddBook extends Component { 
     constructor(props){
         super(props);
         this.state = {
@@ -26,7 +26,10 @@ class AddBook extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        console.log(this.state);
+        // send data to backend via the graphql mutation call 
+        // no values will be sent until bound to component
+        this.props.addBookMutation();
+        // console.log(this.state);
     }
 
     render(){
@@ -62,5 +65,10 @@ class AddBook extends Component {
         );
     }
 }
+// mutations need to be bound to the component
 
-export default graphql(getAuthorsQuery)(AddBook);
+// export default compose(
+//     graphql(getAuthorsQuery, { name: "getAuthorsQuery" }),
+//     graphql(addBookMutation, { name: "addBookMutation" })
+// )(AddBook);
+// export default graphql(getAuthorsQuery)(AddBook);

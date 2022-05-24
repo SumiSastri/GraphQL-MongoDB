@@ -1,6 +1,6 @@
 import '../.././App.css';
-import BookList from './BookList';
-import AddBook from './forms/class-components/AddBook';
+import BookList from '../books/display/BookList'
+import AddBook from './forms/hooks/AddBook';
 
 function BooksIndex() {
   return (
