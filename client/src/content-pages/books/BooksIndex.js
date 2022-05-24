@@ -1,12 +1,14 @@
 import '../.././App.css';
-import BookList from '../books/display/BookList'
-import AddBook from './forms/hooks/AddBook';
+import DisplayBook from "./display/DisplayBook"
+import DisplayBookList from './display/DisplayBookList'
+import AddBook from './forms/AddBook';
 
 function BooksIndex() {
   return (
     <div>
       <h2>Books</h2>
-      <BookList/>
+      <DisplayBookList/>
+      <DisplayBook/>
       <AddBook/>
     </div>
 

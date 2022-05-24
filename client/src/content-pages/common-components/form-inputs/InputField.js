@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./styles/form-inputs.css";
 
-const FormInput = (props) => {
+const InputField = (props) => {
   const {
     className,
     datatestid,
@@ -38,7 +38,7 @@ const FormInput = (props) => {
 };
 
 // Type checks props using the react library
-FormInput.propTypes = {
+InputField.propTypes = {
   className: PropTypes.string,
   datatestid: PropTypes.string,
   id: PropTypes.string,
@@ -51,4 +51,4 @@ FormInput.propTypes = {
   value: PropTypes.string,
 };
 
-export default FormInput;
+export default InputField;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // binds grapql queries to react
 // import {gql} from "@apollo/client";
 
-import Loading from "../../../common-components/loading/Loading"
+import Loading from "../../common-components/loading/Loading"
 // import {getBooksQuery} from "../../utils/queries"
 
 export default class BookList extends Component {

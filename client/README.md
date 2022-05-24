@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# Scaffolding
+
+Installation
+`npx install create-react-app client`
+
+cd client
+`npm install @apollo/client graphql react-router react-router-dom`
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

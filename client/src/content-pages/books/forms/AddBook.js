@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
 import {useQuery} from '@apollo/client';
 
-// to bind mutations to component
-// import {flowRight as compose} from 'lodash';
-
-// import FormInput from "../../../common-components/forms/FormInput"
-import {GET_AUTHORS} from "../../../../utils/queries"
+import "../../../App.css"
+import {GET_AUTHORS} from "../../../utils/queries"
 
 const AddBook =() =>{
     const [name, setName] = useState('');
@@ -13,6 +10,8 @@ const AddBook =() =>{
     const [authorId, setAuthorId] = useState('');
     const { loading, error, data } = useQuery(GET_AUTHORS);
     
+    // console.log("Add Book:",{error, data, loading})
+
     const displayAuthors = (loading, data) =>{
         if (error) return `Error! ${error.message}`;
         
@@ -47,10 +46,12 @@ const AddBook =() =>{
                     { displayAuthors(loading, data) }
                 </select>
             </div>
+            <div className="btn-container">       
+            <h4>Add book</h4>
             <button>+</button>
+            </div>
         </form>
     )
 }
 
 export default AddBook;
-// mutations need to be bound to the component

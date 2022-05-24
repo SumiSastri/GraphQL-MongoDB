@@ -40,6 +40,8 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.5.5",
-    "graphql": "^16.5.0"
+    "graphql": "^16.5.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   }
 }
