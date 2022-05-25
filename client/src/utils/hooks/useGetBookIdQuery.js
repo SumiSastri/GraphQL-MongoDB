@@ -1,7 +1,8 @@
 import {useQuery, gql} from '@apollo/client';
-
-const GET_BOOK_ID = gql`
-    query GetBookId($id:String!){
+// query GetBookId($id:String!){
+    // query GetBookId($id:ID!){
+export const GET_BOOK_ID = gql`
+query GetBookId($id:String!){
         book(id: $id) {
             id
             name
@@ -19,15 +20,32 @@ const GET_BOOK_ID = gql`
     }
 `;
 
+// export const useGetBookIdQuery = (id) => {
+//     const { loading, error, data } = useQuery(GET_BOOK_ID,{
+//         variables: {
+//             id
+//         }
+//     });
+//     return {
+//         error,
+//         data,
+//         loading,
+//     };
+// };
+
 export const useGetBookIdQuery = (id) => {
     const { loading, error, data } = useQuery(GET_BOOK_ID,{
-        variables: {
-            id
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.book
+                }
+            }
         }
     });
     return {
         error,
         data,
-        loading
+        loading,
     };
 };

@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {useQuery} from '@apollo/client';
+// import {useQuery, gql, compose} from '@apollo/client';
 
 import "../../../App.css"
 import {GET_AUTHORS} from "../../../utils/queries"
+// import {GET_AUTHORS, CREATE_BOOK} from "../../../utils/queries"
 
 const AddBook =() =>{
     const [name, setName] = useState('');
@@ -26,7 +28,7 @@ const AddBook =() =>{
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(name, genre, authorId);
+        console.log("Submit new book:", name, genre, authorId);
     }
 
     return(
@@ -55,3 +57,9 @@ const AddBook =() =>{
 }
 
 export default AddBook;
+// export default compose(
+    
+//     gql(GET_AUTHORS, {name:"GET_AUTHORS"}),
+//     gql(CREATE_BOOK, {name:"Get Authors"}),
+
+// )(AddBook)

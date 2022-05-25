@@ -40,14 +40,16 @@ const GET_BOOK_ID = gql`
 `;
 
 // create is a mutation
-const addBookMutation = gql`
+const CREATE_BOOK = gql`
 mutation {
     addBook(name: "", genre: "", authorId: ""){
         name
         id
+        genre
+        authorId
     }
 }
 
 `
 
-export { GET_AUTHORS, GET_BOOKS, GET_BOOK_ID, addBookMutation }
+export { GET_AUTHORS, GET_BOOKS, GET_BOOK_ID, CREATE_BOOK }

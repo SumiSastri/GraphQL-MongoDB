@@ -1,20 +1,33 @@
+import { useState } from "react";
+
+// data
+import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
+// components
 import Loading from "../../common-components/loading/Loading"
 import ErrorHasOccurredComponent from '../../common-components/errors/ErrorHasOccurredComponent';
-import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
+import DisplayBook from "./DisplayBook";
 
-const DisplayBookList =() =>{
+const DisplayBookList =({props}) =>{
+    console.log("DisplayBookList props:", props)
 // call query
   const {error, loading, data} = useGetBooksQuery();
-    // console.log("BookList:", {error, data, loading})
+    console.log("BookList:", {error, data, loading})
 
+  // add handleClick logic
+  const [selected, setSelected] = useState(null);
+
+    //  custom function to render data
     const displayBooks = (loading, data) =>{
+        
     if (error) { return( <ErrorHasOccurredComponent/>)
     
 } else if (loading){
             return( <Loading/>)
         }else{
             return data.books.map(book => {
-                return (<li key={ book.id }>{ book.name }</li>)
+                return (
+                <li key={ book.id } 
+                onClick={() => {setSelected(book.id)}}>{ book.name }</li>)
             })
         }
     }   
@@ -22,6 +35,7 @@ const DisplayBookList =() =>{
             <div>
                 <ul id="book-list">
                 { displayBooks(loading, data, error) }
+                {selected && <DisplayBook bookId={selected} />}
                 </ul>
             </div>
         );

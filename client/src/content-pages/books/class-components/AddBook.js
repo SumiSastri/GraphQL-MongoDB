@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 import FormInput from "../../../common-components/forms/FormInput"
-// import {getAuthorsQuery, addBookMutation} from "../../../../utils/queries"
+// import {getAuthorsQuery, CREATE_BOOK} from "../../../../utils/queries"
 export default class AddBook extends Component { 
     constructor(props){
         super(props);
@@ -28,7 +28,7 @@ export default class AddBook extends Component {
         e.preventDefault()
         // send data to backend via the graphql mutation call 
         // no values will be sent until bound to component
-        this.props.addBookMutation();
+        this.props.CREATE_BOOK();
         // console.log(this.state);
     }
 
@@ -69,6 +69,6 @@ export default class AddBook extends Component {
 
 // export default compose(
 //     graphql(getAuthorsQuery, { name: "getAuthorsQuery" }),
-//     graphql(addBookMutation, { name: "addBookMutation" })
+//     graphql(CREATE_BOOK, { name: "CREATE_BOOK" })
 // )(AddBook);
 // export default graphql(getAuthorsQuery)(AddBook);
