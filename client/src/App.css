@@ -37,11 +37,10 @@ body{
 
 form{
   background: #fff;
-  padding: 10px;
-  position: fixed;
+  padding: 5px;
   left: 0;
   bottom: 0;
-  width: 75%;
+  width: 50%;
   height: auto;
 }
 

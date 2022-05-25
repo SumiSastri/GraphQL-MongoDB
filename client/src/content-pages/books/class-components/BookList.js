@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
-// binds grapql queries to react
-// import {gql} from "@apollo/client";
+import {gql} from '@apollo/client';
 
-import Loading from "../../common-components/loading/Loading"
-// import {getBooksQuery} from "../../utils/queries"
-
-export default class BookList extends Component {
-    // async await?  
+// data
+import { GET_BOOKS } from '../../../utils/queries';
+// components
+import BookDetails from './BookDetails';
+class BookList extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            selected: null
+        }
+    }
     displayBooks(){
-        let data = this.props.data;
+        var data = this.props.data;
         if(data.loading){
-            return( <Loading/>);
+            return( <div>Loading books...</div> );
         } else {
             return data.books.map(book => {
                 return(
-                    <li key={ book.id }>{ book.name }</li>
+                    <li key={ book.id } onClick={ (e) => this.setState({ selected: book.id }) }>{ book.name }</li>
                 );
             })
         }
     }
-    
     render(){
-        // the query is stored in the component props
-        console.log("BookList props", this.props);
         return(
             <div>
                 <ul id="book-list">
                     { this.displayBooks() }
                 </ul>
+                <BookDetails book={ this.state.selected } />
             </div>
         );
     }
 }
-// binds graphlql to the component 
-// export default gql(getBooksQuery)(BookList);
+
+export default gql(GET_BOOKS)(BookList);
