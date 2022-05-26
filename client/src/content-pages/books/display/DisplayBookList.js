@@ -2,13 +2,14 @@ import { useState } from "react";
 
 // data
 import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
+
 // components
 import Loading from "../../common-components/loading/Loading"
 import ErrorHasOccurredComponent from '../../common-components/errors/ErrorHasOccurredComponent';
 import DisplayBook from "./DisplayBook";
 
-const DisplayBookList =({props}) =>{
-    console.log("DisplayBookList props:", props)
+const DisplayBookList =() =>{
+
 // call query
   const {error, loading, data} = useGetBooksQuery();
     console.log("BookList:", {error, data, loading})

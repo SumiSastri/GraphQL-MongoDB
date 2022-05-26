@@ -4,10 +4,10 @@ import { useGetBookIdQuery } from "../../../utils/hooks/useGetBookIdQuery";
 import Loading from "../../common-components/loading/Loading"
 import ErrorHasOccurredComponent from '../../common-components/errors/ErrorHasOccurredComponent';
 
-function DisplayBook({props}) {
-  console.log("displayBook props:", props)
+function DisplayBook({bookId}) {
+  console.log("displayBook props:", bookId)
 // hard code and log to test
-  const { error, loading, data } = useGetBookIdQuery("628b5550c3d7458e93b55b5d");
+  const { error, loading, data } = useGetBookIdQuery(bookId.toString());
   console.log("Book by ID:", {error, data, loading})
 
   if (error) return <div><ErrorHasOccurredComponent /></div>

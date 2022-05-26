@@ -28,8 +28,17 @@ export default class AddBook extends Component {
         e.preventDefault()
         // send data to backend via the graphql mutation call 
         // no values will be sent until bound to component
-        this.props.CREATE_BOOK();
-        // console.log(this.state);
+        console.log(this.state);
+// send to db with a mutation
+    //     this.props.addBookMutation({
+    //         variables: {
+    //             name: this.state.name,
+    //             genre: this.state.genre,
+    //             authorId: this.state.authorId
+    //         },
+    //         refetchQueries: [{ query: getBooksQuery }]
+    //     });
+    // }
     }
 
     render(){

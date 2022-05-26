@@ -7,6 +7,7 @@ query GetBookId($id:String!){
             id
             name
             genre
+            authorId
             author {
                 id
                 name
