@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 4000;
+
+const MONGO_URI = process.env.MONGO_URI
+console.log(MONGO_URI)
 // site security
 const helmet = require('helmet');
 
@@ -31,7 +34,7 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }));
 
-mongoose.connect(`mongodb+srv://music-app-user:wU2SkhkKmYLzKmFd@cluster0.slip5.mongodb.net/test`, 
+mongoose.connect(MONGO_URI, 
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

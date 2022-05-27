@@ -65,20 +65,11 @@ form button{
   color: #fff;
   font-size: 2em;
   background: #AD1457;
-  border: 0;
   padding: 0 10px;
   border-radius: 50%;
   cursor: pointer;
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
 }
 
-form .btn-container{
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-gap: 2px;
-}
 
 #book-details{
   width: 40%;

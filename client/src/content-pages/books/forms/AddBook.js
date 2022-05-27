@@ -11,6 +11,7 @@ const AddBook =() =>{
     const [genre, setGenre] = useState('');
     const [authorId, setAuthorId] = useState('');
     const { loading, error, data } = useQuery(GET_AUTHORS);
+
     console.log("Add Book:",{error, data, loading})
 
     const [createBook] = useMutation(CREATE_BOOK, {
@@ -39,10 +40,13 @@ const AddBook =() =>{
         // send to backend Db
             createBook(name, genre, authorId)
             // console.log("Log createBook function:", createBook())
+            // refetchQueries: [{ query: GET_BOOKS }]
+            // refetch()
     }
 
     return(
         <form id="add-book" onSubmit={handleSubmit}>
+         
             <div className="field">
                 <label>Book name:</label>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -57,11 +61,10 @@ const AddBook =() =>{
                     <option>Select author</option>
                     { displayAuthors(loading, data) }
                 </select>
-            </div>
-            <div className="btn-container">       
-            <h4>Add book</h4>
-            <button>+</button>
-            </div>
+            </div> 
+            <h4>Add book</h4>    
+            <button>+</button> 
+         
         </form>
     )
 }

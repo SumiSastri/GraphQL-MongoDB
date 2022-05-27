@@ -30,7 +30,7 @@ const GET_BOOK_ID = gql`
             author {
                 id
                 name
-                age
+                century
                 books {
                     name
                     id

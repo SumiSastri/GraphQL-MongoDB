@@ -113,6 +113,7 @@ const RootQuery = new GraphQLObjectType({
 });
       // FROM & TO DB 
 // mutations are the equivalent of the CRUD actions - add, update, create, delete
+// findByIdAndUpdate() findByIdAndRemove() - mongoose methods
 const Mutation = new GraphQLObjectType({
     name: "Mutation",
     fields: {
