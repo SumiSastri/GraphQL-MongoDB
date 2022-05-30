@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {useQuery,useMutation} from '@apollo/client';
 
 import "../../../App.css"
+// data
+import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
 import {GET_AUTHORS} from "../../../utils/queries/queries"
 import {CREATE_BOOK} from "../../../utils/mutations/createBookMutation"
 
@@ -21,7 +23,9 @@ const AddBook =() =>{
          authorId,
            },
          });
-      
+    
+         const {refetch} = useGetBooksQuery();
+
     function displayAuthors(loading, data) {
         if (error)
             return `Error! ${error.message}`;
@@ -39,9 +43,7 @@ const AddBook =() =>{
         console.log("Log submit new book:", name, genre, authorId);   
         // send to backend Db
             createBook(name, genre, authorId)
-            // console.log("Log createBook function:", createBook())
-            // refetchQueries: [{ query: GET_BOOKS }]
-            // refetch()
+            refetch()
     }
 
     return(

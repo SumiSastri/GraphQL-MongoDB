@@ -11,12 +11,13 @@ import DisplayBook from "./DisplayBook";
 const DisplayBookList =() =>{
 
 // call query
+// the query is refetched in the create book component to display and render correctly
   const {error, loading, data} = useGetBooksQuery();
     console.log("BookList:", {error, data, loading})
 
   // add handleClick logic
   const [selected, setSelected] = useState(null);
-
+ 
     //  custom function to render data
     const displayBooks = (loading, data) =>{
         
@@ -28,7 +29,7 @@ const DisplayBookList =() =>{
             return data.books.map(book => {
                 return (
                 <li key={ book.id } 
-                onClick={() => {setSelected(book.id)}}>{ book.name }</li>)
+                onClick={() => {setSelected(book.id)  }}>{ book.name }</li>)
             })
         }
     }   

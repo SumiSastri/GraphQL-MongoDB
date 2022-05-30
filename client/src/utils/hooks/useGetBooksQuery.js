@@ -12,10 +12,11 @@ const GET_BOOKS = gql`
 `;
 
 export const useGetBooksQuery = () => {
-    const { loading, error, data } = useQuery(GET_BOOKS);
+    const { loading, error, data, refetch } = useQuery(GET_BOOKS);
     return {
         error,
         data,
-        loading
+        loading,
+        refetch
     }
 }
