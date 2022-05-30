@@ -9,6 +9,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLInt, GraphQLID, 
 const Book = require ("../models/bookSchema")
 const Author = require ("../models/authorSchema")
 
+// server-side type definitions
 const BookType = new GraphQLObjectType({
     name: 'Book',
     // void function to call the fields due to call-stack
