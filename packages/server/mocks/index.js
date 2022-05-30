@@ -1,3 +1,11 @@
+const users = [
+   {username: "User1", password: user1 , email: "email1@email.com", createdAt: Date.now() },
+   {username: "User2", password: user12 , email: "email2@email.com", createdAt: Date.now() },
+   {username: "User3", password: user123 , email: "email3@email.com", createdAt: Date.now() },
+   {username: "User4", password: user1234 , email: "email4@email.com", createdAt: Date.now() },
+   ]
+ 
+ 
  const books = [
     {name: "A Fine Gift from Lakshmi", genre: "Short Stories", id: "1", authorId:"628b510eafc88b7e1f73ed58" },
     {name: "Gandhi - The Man of the Millions", genre: "Historical Drama", id: "2",authorId:"628b510eafc88b7e1f73ed58"  },
