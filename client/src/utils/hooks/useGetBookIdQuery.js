@@ -1,34 +1,42 @@
-   
 import {useQuery, gql} from '@apollo/client';
-
-const GET_BOOK_ID = gql`
-    query GetBookId($id:String!){
-        book(id: $id) {
+// test by hardcoding the book with single id
+// query GetBookId($id:String!){
+    
+    // required when dynamically passing prop
+    // query GetBookId($id:ID!){
+export const GET_BOOK_ID = gql`
+query GetBookId($id: ID!){
+    book(id: $id) {
+        id
+        name
+        genre
+        author {
             id
             name
-            genre
-            author {
-                id
+            century
+            books {
                 name
-                century
-                books {
-                    name
-                    id
-                }
+                id
             }
         }
     }
+}
 `;
 
 export const useGetBookIdQuery = (id) => {
     const { loading, error, data } = useQuery(GET_BOOK_ID,{
-        variables: {
-            id
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.bookId
+                }
+            }
         }
     });
     return {
         error,
         data,
-        loading
+        loading,
+        id
     };
 };

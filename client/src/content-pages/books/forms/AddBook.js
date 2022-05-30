@@ -23,7 +23,7 @@ const AddBook =() =>{
          authorId,
            },
          });
-    // the data has to be refetched with the Apollo server method to be displayed 
+    
          const {refetch} = useGetBooksQuery();
 
     function displayAuthors(loading, data) {
