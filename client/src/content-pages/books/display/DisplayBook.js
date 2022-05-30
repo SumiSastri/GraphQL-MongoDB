@@ -6,13 +6,7 @@ import Loading from "../../common-components/loading/Loading"
 import ErrorHasOccurredComponent from '../../common-components/errors/ErrorHasOccurredComponent';
 
 function DisplayBook({bookId}) {
-// console.log("displayBook props:", bookId)
 const { error, loading, data } = useGetBookIdQuery(bookId);
-// console.log("Book by ID:", {error, loading, data, bookId})
-
-// function DisplayBook() {
-// // hard code and log to test with one book 
-// const { error, loading, data } = useGetBookIdQuery("628b5550c3d7458e93b55b5d");
 
 if (error) return <div><ErrorHasOccurredComponent /></div>
 if (loading) return <div><Loading /></div>
