@@ -13,7 +13,10 @@ if (loading) return <div><Loading /></div>
 
 return (
   <div>
+    <div>
     <h2>{data.book.name}</h2>
+    {/* <button>Edit & Update</button> */}
+    </div>
     <div id="book-details">
       <h5>Genre</h5><p>{data.book.genre}</p>
       <h5>Author</h5><p>{data.book.author.name}</p>
@@ -25,7 +28,6 @@ return (
                   </ul>
     </div>
   </div>
-
 );
 }
   

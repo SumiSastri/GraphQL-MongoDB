@@ -47,8 +47,7 @@ const AddBook =() =>{
     }
 
     return(
-        <form id="add-book" onSubmit={handleSubmit}>
-         
+        <form id="add-book" onSubmit={handleSubmit}>         
             <div className="field">
                 <label>Book name:</label>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -65,8 +64,7 @@ const AddBook =() =>{
                 </select>
             </div> 
             <h4>Add book</h4>    
-            <button>+</button> 
-         
+            <button>+</button>         
         </form>
     )
 }

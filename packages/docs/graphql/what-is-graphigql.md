@@ -1,6 +1,8 @@
-graphiql is a run-time environment that mocks up a front end that helps you test the GraphQL server.
+# What is GraphiQL
 
-It is spun up with an Express server on local host.
+Prounounced `grafical`, graphiql is a run-time environment that mocks up a front end that helps you test the GraphQL server.
+
+It is spun up with an Express server on local host. It is an in-browser tool for writing, validating, and testing GraphQL queries.
 
 A query is set up as an object and related queries as nested objects.
 
@@ -17,8 +19,6 @@ eg:
 
 Accessed /graphiql (in local host)
 
-
-GraphiQL is an in-browser tool for writing, validating, and testing GraphQL queries.
 
 
 An example GraphQL query might look like:

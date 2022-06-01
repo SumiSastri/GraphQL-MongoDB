@@ -1,13 +1,13 @@
-Resources:
+# Resources to learn & debug GraphQL 
 
+Net Ninja Tutorial (Note this tutorial is dated - the Apollo server section does not include Apollo-3. The React section still depends on class-components rather than hooks)
 
-
-
-Net Ninja Tutorial:
 Series Link [https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f]
 
-Some useful individual modules
+Some useful individual modules:
+
 Root Query: [https://www.youtube.com/watch?v=ALqNbTik44o&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=8]
+
 Reslove Function [https://www.youtube.com/watch?v=NWod5SFW13s&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=9]
 
 GraphQL ID [https://www.youtube.com/watch?v=TkT2aLtX2tc&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=11]
@@ -20,4 +20,3 @@ MongoDB-Mongoose set up[]
 
 Mutations: [https://www.youtube.com/watch?v=DU77lbBPfBI&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=18]
 
-Apollo client set up[https://www.youtube.com/watch?v=8Pyr82Qbjow&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=25]

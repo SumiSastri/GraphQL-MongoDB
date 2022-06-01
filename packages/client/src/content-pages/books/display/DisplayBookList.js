@@ -7,7 +7,7 @@ import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
 import Loading from "../../common-components/loading/Loading";
 import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
 import DisplayBook from "./DisplayBook";
-import UpdateBook from "../forms/UpdateBook";
+// import UpdateBook from "../forms/UpdateBook";
 
 const DisplayBookList = () => {
   // call query
@@ -17,7 +17,7 @@ const DisplayBookList = () => {
 
   // add handleClick logic
   const [selected, setSelected] = useState(null);
-  const [updateBookDetails, setUpdateBookDetails] = useState(null);
+  // const [updateBookDetails, setUpdateBookDetails] = useState(null);
 
   //  custom function to render data
   const displayBooks = (loading, data) => {
@@ -27,29 +27,28 @@ const DisplayBookList = () => {
       return <Loading />;
     } else {
       return data.books.map((book) => {
-        return (
+        return (    
             <li key={book.id}
                 onClick={() => {
                     setSelected(book.id);
                 } }
             >
-                <p>{book.name}
-                {/* <span onClick={() => {
+                <li>{book.name}</li>
+                      {/* <span onClick={() => {
                     setUpdateBookDetails(book.id);
                 }}>Update</span>  */}
-                </p>
-            </li>       
-   
+            </li>
         );
       });
     }
   };
   return (
     <div>
+      <h1>Indian Authors in English</h1>
       <ul id='book-list'>
-        {displayBooks(loading, data, error)}
-        {selected && <DisplayBook bookId={selected} />}
-        {updateBookDetails && <UpdateBook bookId={updateBookDetails} />}
+        <li>{displayBooks(loading, data, error)}</li>
+        <li>{selected && <DisplayBook bookId={selected} />}</li>
+        {/* <button>{updateBookDetails && <UpdateBook bookId={updateBookDetails} />}Update or Edit Book</button> */}
       </ul>
     </div>
   );
