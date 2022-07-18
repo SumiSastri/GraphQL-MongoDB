@@ -1,3 +1,12 @@
+# Table of Contents
+
+Authors Repo using GraphQL-React-MongoDb and Lerna as a package manager
+
+<img src="packages/docs/assets/GraphQL-React-Mongo-App.png" alt="Authors Repo using GraphQL-React-MongoDb" height="350"/>
+
+1. Scaffolding
+2. Scripts
+3. Dbs
 # Scaffolding:
 
 Lerna can be added to manage the 2 repos more efficiently.
@@ -16,7 +25,6 @@ Client-side dependencies:
 Bootstrapped with `npx create-react-app`
 `npm install @apollo/client grapql react-router react-router-dom lodash lodash.flowright`
 
-
 Server-side dependencies:
 `npm install express helmet cors dotenv nodemon express-router graphql express-graphql lodash lodash.flowright mongoose --save-dev`
 
@@ -27,6 +35,8 @@ cd packages/client - `npm run start`
 LocalHost: `http://localhost:3000/`
 
 Server-side:
+- set up MongoDb/ whitelist IP/ check password and `.env` file for MONGO_URI
+
 cd packages/server - `nodemon server`
 cd server and `nodemon server` to spin up server in local host (port 4000 || port of your choice)
 
@@ -37,3 +47,5 @@ LocalHost: `http://localhost:4000/graphql` once you have set up the express serv
 # Dbs
 MongoDb
 Mongoose - ORM
+Connect with Mongo Atlas
+
