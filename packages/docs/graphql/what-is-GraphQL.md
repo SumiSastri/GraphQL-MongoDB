@@ -5,7 +5,9 @@ GraphQL is an open source query language to call APIs. It's not a library. It's 
 
 The language is strongly-typed, with methods for queries, mutations, subscriptions and fragments.
 
-Instead of hitting a URL endpoint and getting a massive JSON object back, GraphQL lets you write a query to request for exactly the data that you want and receive the results filtering out all the data that is not required.
+The run-time environment fulfils queries that have come back from the server response data.
+
+It is an alternative to the REST API - so instead of hitting a URL endpoint and getting a massive JSON object back, the GraphQL language lets you write a query to request for exactly the data that you want and receive the results while the GraphQL runtime environment helps you filter out all the data that is not required.
 
 GraphQL provides clients the power to ask for exactly what they need and receive the response with what they asked for. With GraphQL you can get all the data that you need within a single request. GraphQL allows you to aggregate queries and fetch all the data in one request, avoiding multiple request-response cycles.
 

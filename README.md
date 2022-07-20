@@ -26,8 +26,13 @@ Bootstrapped with `npx create-react-app`
 `npm install @apollo/client grapql react-router react-router-dom lodash lodash.flowright`
 
 Server-side dependencies:
-`npm install express helmet cors dotenv nodemon express-router graphql express-graphql lodash lodash.flowright mongoose --save-dev`
+There are several options like grapql-yoga and systems like graph-cms, etc., 
 
+The libraries used in this repo are:
+
+`npm install express express-router graphql express-graphql helmet cors dotenv nodemon lodash lodash.flowright mongoose colors --save-dev`
+
+express-graphql works well with JavaScript, express in a node environment.
 # Scripts:
 
 Client-side:
