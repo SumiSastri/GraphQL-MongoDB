@@ -1,4 +1,8 @@
-Queries are used to query data in a database.
+# What is a GraphQL query?
+
+Queries are used to query data in a database and are the equivalent of the process in a REST API.
+
+Queries are strongly typed and are mandatory. The query is shaped as an object and a schema calling the data from its source.
 
 The query operation is composed of:
 
@@ -9,4 +13,5 @@ Fragments - reusable units (similar to functions - build sets of fields that you
 Operation Name - unique name for the query keyword is `query` this is an anonymous query, you can also have unique named queries
 Variables - similar to functions with input arguments
 
-https://app.pluralsight.com/guides/querying-data-with-graphql
+
+[https://app.pluralsight.com/guides/querying-data-with-graphql]

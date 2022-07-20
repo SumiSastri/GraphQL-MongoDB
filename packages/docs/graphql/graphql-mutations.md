@@ -1,7 +1,8 @@
+# What are mutations in GraphQL?
+
 Mutations are similar to the rest verbs create-update-delete.
 
-GraphQL assumes there will be side-effects ater mutation operations and changes the dataset after mutation
-key word `mutation` the operation defined in an object.
+GraphQL assumes there will be side-effects ater mutation operations and changes the dataset after mutation key word `mutation` the operation defined in an object.
 
 A resolver function is a function that resolves a value for a type or field in our GraphQL schema. 
 

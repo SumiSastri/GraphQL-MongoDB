@@ -1,4 +1,6 @@
-- uses strongly-typed schema which serves as a contract between client & server
+# GraphQL schemas
+
+- Like TypeScript and Mongoose (ORM), GraphQL uses strongly-typed schema which serves as a contract between client & server.
 
 **scalar types or primitive data**
 

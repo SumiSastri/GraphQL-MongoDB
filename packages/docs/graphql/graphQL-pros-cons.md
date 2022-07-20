@@ -1,3 +1,5 @@
+# PROS
+
 - Aggregated queries in one query
 - Exact requirements met - language agnostic
 - Strongly-typed - predictability of query - error-handling with the schema validation with resolver functions
@@ -12,7 +14,7 @@
 - Integration with React [https://app.pluralsight.com/guides/how-to-set-up-graphql-in-a-react-app]
 - Developer community (Twitter/ Facebook/ )
 
-CONS
+# CONS
 
 - One of the cons is developers can do anything against schema - aliases of the same query to return different bits of information
 - Caching not embedded as in HTTP

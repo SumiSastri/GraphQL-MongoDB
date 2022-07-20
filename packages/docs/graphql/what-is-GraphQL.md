@@ -1,7 +1,7 @@
 From Aditi Ravichandran/ Plural Sight: GraphQL the Big Picture
 [https://app.pluralsight.com/library/courses/graphql-big-picture/table-of-contents]
 
-GraphQL is essentially a query language for your API. It's not a library. It's not a product. It's not a database. It is both a language and a run-time environment.
+GraphQL is an open source query language to call APIs. It's not a library. It's not a product. It's not a database. It is both a language and a run-time environment.
 
 The language is strongly-typed, with methods for queries, mutations, subscriptions and fragments.
 
@@ -29,5 +29,9 @@ PayPal, Yelp, GitHub and Twitter are early adopters.
 Resources:
 
 GraphQL integrates easily with React [https://app.pluralsight.com/guides/how-to-set-up-graphql-in-a-react-app]
+
 NetNinja [https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f]
 https://www.youtube.com/watch?v=NbKJFRgsw-A
+
+Traversy Media:
+[https://www.youtube.com/watch?v=BcLNfwF04Kw]
