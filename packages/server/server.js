@@ -14,8 +14,10 @@ const schema = require('./schema/schema');
 const app = express();
 app.use(cors());
 app.use(helmet());
+// use the grapqlHTTP library methods
 app.use('/graphql', graphqlHTTP({
   schema,
+  // if environment changes to production this changes to false
   graphiql: true
 }));
 
@@ -27,4 +29,4 @@ mongoose.connect(MONGO_URI,
   }) .then(() => console.log('SUCCESS: MongoDB Connected...'))
   .catch(err => console.log(err, "DB CHECK: Not connected Check cloud connection, password, IP address"));
 
-app.listen(4000, () => console.log(`app server connected on port ${port}`));
+app.listen(4000, () => console.log(`GrapQL-MongoDB-App: Express server connected on port ${port}`));

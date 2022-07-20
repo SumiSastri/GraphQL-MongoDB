@@ -49,6 +49,11 @@ entry-point in package-json
  `"main": "server.js",`
 LocalHost: `http://localhost:4000/graphql` once you have set up the express server 
 
+dotenv file
+
+NODE_ENV="development"
+PORT=4000
+MONGO_URI=mongodb+srv://username:password@cluster0.slip5.mongodb.net/test
 # Dbs
 MongoDb
 Mongoose - ORM
