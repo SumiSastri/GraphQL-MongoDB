@@ -101,7 +101,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
     //   resolver in the query - hard coded with vanilla JS find method
       resolve(parent, args) {
-        return BookClients.find(client => client.id === args.id);
+        return BookClient.find(client => client.id === args.id);
       },
     },
 
@@ -111,11 +111,11 @@ const RootQuery = new GraphQLObjectType({
         args: { id: { type: GraphQLID } },
       //   resolver in the query - hard coded with vanilla JS find method
         resolve(parent, args) {
-          return BookProjects.find(client => client.id === args.id);
+          return BookProject.find(project => project.id === args.id);
         },
       },
 
-    // books and authors as lists
+    // LISTS
     books: {
       type: new GraphQLList(BookType),
       resolve(parent, args) {
@@ -125,6 +125,7 @@ const RootQuery = new GraphQLObjectType({
         // return books;
       },
     },
+    // authors
     authors: {
       type: new GraphQLList(AuthorType),
       resolve(parent, args) {
@@ -133,6 +134,21 @@ const RootQuery = new GraphQLObjectType({
         // return authors;
       },
     },
+    // clients
+    bookClients: {
+      type: new GraphQLList(BookClientType),
+      resolve(parent, args) {
+        return BookClient.find({});
+      },
+    },
+    // projects
+    bookProjects: {
+      type: new GraphQLList(BookProjectType),
+      resolve(parent, args) {
+        return BookProject.find({});
+      },
+    },
+    
   },
 });
 
