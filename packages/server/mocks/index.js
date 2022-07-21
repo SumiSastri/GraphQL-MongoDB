@@ -5,7 +5,7 @@
 //    {username: "User4", password: user1234 , email: "email4@email.com", createdAt: Date.now() },
 //    ]
  
- 
+//  books catalog
  const books = [
     {name: "A Fine Gift from Lakshmi", genre: "Short Stories", id: "1", authorId:"628b510eafc88b7e1f73ed58" },
     {name: "Gandhi - The Man of the Millions", genre: "Historical Drama", id: "2",authorId:"628b510eafc88b7e1f73ed58"  },
@@ -19,7 +19,7 @@
     {name: "Gora", genre: "Novella", id:"8", authorId:"628b521cae7208b7254e209b"},
     {name: "YogaYog", genre: "Novella", id:"8", authorId:"628b521cae7208b7254e209b"},
 ];
-
+// authors
  const authors = [
     {name: "Prema Sastri", century: 20 , id: "628b510eafc88b7e1f73ed58" },
     {name: "Pandit Natesa Sastri", century: 19, id: "628b52c1ae7208b7254e209d" },
@@ -31,40 +31,40 @@
 const bookProjects = [
    {
      id: '1',
-     clientId: '1',
-     name: 'eCommerce Website',
+     bookClientId: '1',
+     name: 'Authors Promotions',
      description:
        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.',
      status: 'In Progress',
    },
    {
      id: '2',
-     clientId: '2',
-     name: 'Dating App',
+     bookClientId: '2',
+     name: 'Books Promotions',
      description:
        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.',
      status: 'In Progress',
    },
    {
      id: '3',
-     clientId: '3',
-     name: 'SEO Project',
+     bookClientId: '3',
+     name: 'Backlist Managagement',
      description:
        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.',
      status: 'In Progress',
    },
    {
      id: '4',
-     clientId: '4',
-     name: 'Design Prototype',
+     bookClientId: '4',
+     name: 'Digitial Editions Promotions',
      description:
        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.',
      status: 'Done',
    },
    {
      id: '5',
-     clientId: '5',
-     name: 'Auction Website',
+     bookClientId: '5',
+     name: 'Second Rights Auction Website',
      description:
        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu.',
      status: 'In Progress',

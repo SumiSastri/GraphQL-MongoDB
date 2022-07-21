@@ -52,7 +52,7 @@ const AuthorType = new GraphQLObjectType({
 // bookClient Type
 const BookClientType = new GraphQLObjectType({
   name: "BookClient",
-//   function that returns the graphQL strongly typed object
+  //   function that returns the graphQL strongly typed object
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
@@ -63,20 +63,28 @@ const BookClientType = new GraphQLObjectType({
 
 // bookProject Type
 const BookProjectType = new GraphQLObjectType({
-  name: 'BookProject',
+  name: "BookProject",
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     status: { type: GraphQLString },
   }),
+  // related data projects-clients in a nested query
+  bookClient: {
+    type: BookClientType,
+    resolve(parent, args) {
+      // in mocks bookClient has bookClientId
+      return BookClient.findById(parent.bookClientId);
+    },
+  },
 });
 
 // STEP 2: HTTP graphQL query to the db (Equivalent of GET request)
 const RootQuery = new GraphQLObjectType({
-  // Single query of nested objects unlike REST
+  // Single query of nested objects unlike REST (Equivalent of GET by id)
   name: "RootQueryType",
-//   query fields are a plain object strongly typed 
+  //   query fields are a plain object strongly typed
   fields: {
     // book object
     book: {
@@ -99,21 +107,21 @@ const RootQuery = new GraphQLObjectType({
     bookClient: {
       type: BookClientType,
       args: { id: { type: GraphQLID } },
-    //   resolver in the query - hard coded with vanilla JS find method
+      //   resolver in the query - hard coded with vanilla JS find method
       resolve(parent, args) {
-        return BookClient.find(client => client.id === args.id);
+        return BookClient.find((client) => client.id === args.id);
       },
     },
 
-      // bookProject object
-      bookProject: {
-        type: BookProjectType,
-        args: { id: { type: GraphQLID } },
+    // bookProject object
+    bookProject: {
+      type: BookProjectType,
+      args: { id: { type: GraphQLID } },
       //   resolver in the query - hard coded with vanilla JS find method
-        resolve(parent, args) {
-          return BookProject.find(project => project.id === args.id);
-        },
+      resolve(parent, args) {
+        return BookProject.find((project) => project.id === args.id);
       },
+    },
 
     // LISTS
     books: {
@@ -148,12 +156,11 @@ const RootQuery = new GraphQLObjectType({
         return BookProject.find({});
       },
     },
-    
   },
 });
 
-// FROM & TO DB
-// mutations are the equivalent of the CRUD actions - create(add), update delete
+
+// Mutations are the equivalent of the CRUD actions - create(add), update delete
 // save() findByIdAndUpdate() findByIdAndRemove() - mongoose methods
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -192,8 +199,8 @@ const Mutation = new GraphQLObjectType({
         return book.save();
       },
     },
-     // Delete book (destructive permanent)
-     deleteBook: {
+    // Delete book (destructive permanent)
+    deleteBook: {
       type: BookType,
       args: {
         id: { type: graphql.GraphQLID },
