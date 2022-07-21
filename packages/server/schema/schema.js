@@ -72,7 +72,7 @@ const BookProjectType = new GraphQLObjectType({
   }),
 });
 
-// STEP 2: HTTP graphQL query to the db
+// STEP 2: HTTP graphQL query to the db (Equivalent of GET request)
 const RootQuery = new GraphQLObjectType({
   // Single query of nested objects unlike REST
   name: "RootQueryType",
@@ -153,8 +153,8 @@ const RootQuery = new GraphQLObjectType({
 });
 
 // FROM & TO DB
-// mutations are the equivalent of the CRUD actions - add, update, create, delete
-// findByIdAndUpdate() findByIdAndRemove() - mongoose methods
+// mutations are the equivalent of the CRUD actions - create(add), update delete
+// save() findByIdAndUpdate() findByIdAndRemove() - mongoose methods
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -167,7 +167,7 @@ const Mutation = new GraphQLObjectType({
       },
       // make a new instance of the data in the database
       resolve(parent, args) {
-        // this constructor comes from the mongoose Schema
+        // this constructor comes from the mongoose Schema - new payload to save
         let author = new Author({
           name: args.name,
           century: args.century,
@@ -190,6 +190,16 @@ const Mutation = new GraphQLObjectType({
           authorId: args.authorId,
         });
         return book.save();
+      },
+    },
+     // Delete book (destructive permanent)
+     deleteBook: {
+      type: BookType,
+      args: {
+        id: { type: graphql.GraphQLID },
+      },
+      resolve(parent, args) {
+        return book.findByIdAndRemove(args.id);
       },
     },
   },
