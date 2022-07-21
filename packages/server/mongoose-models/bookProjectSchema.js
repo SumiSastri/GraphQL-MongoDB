@@ -13,8 +13,8 @@ const BookProjectSchema = new mongoose.Schema({
   },
   bookClientId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Book Client',
+    ref: 'BookClient',
   },
 });
 
-module.exports = mongoose.model('Book Project', BookProjectSchema);
+module.exports = mongoose.model('BookProject', BookProjectSchema);

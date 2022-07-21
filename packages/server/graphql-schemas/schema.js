@@ -178,6 +178,7 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    // add author
     addAuthor: {
       type: AuthorType,
       // ensure the types are typed correctly
@@ -219,10 +220,122 @@ const Mutation = new GraphQLObjectType({
         id: { type: graphql.GraphQLID },
       },
       resolve(parent, args) {
-        return book.findByIdAndRemove(args.id);
+        return Book.findByIdAndRemove(args.id);
       },
     },
   },
+
+  fields: {
+    // Add a book client
+    addBookClient: {
+      type: BookClientType,
+      args: {
+        name: { type: GraphQLNonNull(GraphQLString) },
+        email: { type: GraphQLNonNull(GraphQLString) },
+        phone: { type: GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, args) {
+        const bookClient = new BookClient({
+          name: args.name,
+          email: args.email,
+          phone: args.phone,
+        });
+        return bookClient.save();
+      },
+    },
+    // Delete a client - with nested data resolve with a forEach iteration
+    deleteClient: {
+      type: BookClientType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        BookProject.find({ bookClientId: args.id })
+        .then((bookProjects) => {
+          bookProjects.forEach((bookProject) => {
+            bookProject.remove();
+          });
+        });
+        return BookClient.findByIdAndRemove(args.id);
+      },
+    },
+    // Add a project
+    addBookProject: {
+      type: BookProjectType,
+      args: {
+        name: { type: GraphQLNonNull(GraphQLString) },
+        description: { type: GraphQLNonNull(GraphQLString) },
+        status: {
+          type: new GraphQLEnumType({
+            name: 'ProjectStatus',
+            values: {
+              new: { value: 'Not Started' },
+              progress: { value: 'In Progress' },
+              completed: { value: 'Completed' },
+            },
+          }),
+          defaultValue: 'Not Started',
+        },
+        bookClientId: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const bookProject = new BookProject({
+          name: args.name,
+          description: args.description,
+          status: args.status,
+          bookClientId: args.bookClientId,
+        });
+        return bookProject.save();
+      },
+    },
+    // Delete a project
+    deleteBookProject: {
+      type: BookProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return BookProject.findByIdAndRemove(args.id);
+      },
+    },
+    // Update a project
+    updateBookProject: {
+      type: BookProjectType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        // non-null not the right type here
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        status: {
+          type: new GraphQLEnumType({
+            // names need to be unique
+            name: 'ProjectStatusUpdate',
+            values: {
+              new: { value: 'Not Started' },
+              progress: { value: 'In Progress' },
+              completed: { value: 'Completed' },
+            },
+          }),
+        },
+      },
+      resolve(parent, args) {
+        return BookProject.findByIdAndUpdate(
+          args.id,
+          {
+            // get the value and set the value to the new payload that has been updated
+            $set: {
+              name: args.name,
+              description: args.description,
+              status: args.status,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+  },
+
+
 });
 
 module.exports = new GraphQLSchema({
