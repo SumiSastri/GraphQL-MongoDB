@@ -12,9 +12,9 @@ const {
 
 const Book = require("../mongoose-models/bookSchema");
 const Author = require("../mongoose-models/authorSchema");
-const { BookProjects, BookClients } = require("../mocks");
+const { bookProjects, bookClients } = require("../mocks");
 
-//STEP 1: DEFINE server-side graphQL typeS
+//STEP 1: DEFINE server-side graphQL types
 const BookType = new GraphQLObjectType({
   name: "Book",
   // void function to call the fields due to call-stack
@@ -74,23 +74,20 @@ const BookProjectType = new GraphQLObjectType({
   bookClient: {
     type: BookClientType,
     resolve(parent, args) {
-      // in mocks bookClient has bookClientId
-      return BookClient.findById(parent.bookClientId);
+      // in mocks bookClients has bookClientId
+      return bookClients.findById(parent.bookClientId);
     },
   },
 });
 
 // STEP 2: HTTP graphQL query to the db (Equivalent of GET request)
 const RootQuery = new GraphQLObjectType({
-  // Single query of nested objects unlike REST (Equivalent of GET by id)
   name: "RootQueryType",
-  //   query fields are a plain object strongly typed
   fields: {
     // book object
     book: {
       type: BookType,
       args: { id: { type: GraphQLString } },
-      // get request server-side data - source agnostic
       resolve(parent, args) {
         return Book.findById(args.id);
       },
@@ -109,7 +106,8 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       //   resolver in the query - hard coded with vanilla JS find method
       resolve(parent, args) {
-        return BookClient.find((client) => client.id === args.id);
+        // in mocks bookClients - hard coded test first
+        return bookClients.find((client) => client.id === args.id);
       },
     },
 
@@ -119,7 +117,8 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       //   resolver in the query - hard coded with vanilla JS find method
       resolve(parent, args) {
-        return BookProject.find((project) => project.id === args.id);
+              // in mocks bookProjectss - hard coded test first
+        return bookProjects.find((project) => project.id === args.id);
       },
     },
 
@@ -138,28 +137,32 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(AuthorType),
       resolve(parent, args) {
         return Author.find({});
-        // FROM HARD-CODED DATA ARRAY
-        // return authors;
       },
     },
     // clients
     bookClients: {
       type: new GraphQLList(BookClientType),
       resolve(parent, args) {
-        return BookClient.find({});
+        // From mongoose models
+        // return BookClient.find({});
+        // From mocks
+        return bookClients;
       },
     },
     // projects
     bookProjects: {
       type: new GraphQLList(BookProjectType),
       resolve(parent, args) {
-        return BookProject.find({});
+        // From mongoose models
+        // return BookProject.find({});
+          // From mocks
+        return bookProjects;
       },
     },
   },
 });
 
-
+// STEP 3 - mutate data that you have fetched
 // Mutations are the equivalent of the CRUD actions - create(add), update delete
 // save() findByIdAndUpdate() findByIdAndRemove() - mongoose methods
 const Mutation = new GraphQLObjectType({
