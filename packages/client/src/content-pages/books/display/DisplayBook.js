@@ -13,19 +13,19 @@ if (loading) return <div><Loading /></div>
 
 return (
   <div>
-    <div>
     <h2>{data.book.name}</h2>
-    {/* <button>Edit & Update</button> */}
-    </div>
     <div id="book-details">
       <h5>Genre</h5><p>{data.book.genre}</p>
       <h5>Author</h5><p>{data.book.author.name}</p>
-      <h6>More by the same author</h6>
-      <ul className="other-books">
-                      { data.book.author.books.map(item => {
-                          return <li key={item.id}>{ item.name }</li>
-                      })}
-                  </ul>
+      <h6>More by the same author</h6> 
+                      { data.book.author.books.map(item => {                
+                          return  <div>
+                        <ul className="other-books">
+                            <li key={item.id}>{ item.name }</li>
+                          </ul>
+                          <button>Delete</button>  <button>Update</button>
+                          </div>
+                      })}      
     </div>
   </div>
 );
