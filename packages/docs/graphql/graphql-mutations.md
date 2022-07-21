@@ -6,53 +6,46 @@ A mutation is a strongly typed object that changes the original data to the shap
 
 GraphQL assumes there will be side-effects ater mutation operations and changes the dataset after mutation key word `mutation` the operation defined in an object.
 
-
-A resolver function is a function that resolves a value for a type or field in our GraphQL schema. 
+A resolver function is a function that resolves a value for a type or field in our GraphQL schema in the api-environment resolving the header and the response data.
 
 Resolvers can return objects or scalars like strings, numbers, Booleans, et cetera. They can also resolve values from another REST API, database, cache, or any other source. 
 
-So, the GraphQL Server is where we'd write these resolver functions that mutate the data.
-
-eg below is in the file `packages/server/schema/schema.js`
+eg: below is in the file `packages/server/schema/schema.js`
 
 ```
 const Mutation = new GraphQLObjectType({
     name: "Mutation",
     fields: {
-        addAuthor: {
-            type: AuthorType,
-            // ensure the types are typed correctly 
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                century: { type: new GraphQLNonNull(GraphQLInt) },
-            },
-            // make a new instance of the data in the database
-            resolve(parent, args) {
-                // this constructor comes from the mongoose Schema
-                let author = new Author({
-                    name: args.name,
-                    century: args.century
-                });
-                return author.save()
-            }
-        },
-    // to db collection
-        addBook: {
-            type: BookType,
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                genre: { type: new GraphQLNonNull(GraphQLString) },
-                authorId: { type: new GraphQLNonNull(GraphQLID) }
-            },
-            resolve(parent, args){
-                let book = new Book({
-                    name: args.name,
-                    genre: args.genre,
-                    authorId: args.authorId
-                });
-                return book.save();
-            }
-        }
-    }
+<!-- CREATE -->
+         addBook: {
+      type: BookType,
+<!-- ensure the types are typed correctly and that if type is GraphQLNonNull it is a constructor with they key word new -->
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+<!-- make a new instance of the data in the database -->
+      resolve(parent, args) {
+<!-- this constructor comes from the mongoose Schema - new payload to save -->
+        let book = new Book({
+          name: args.name,
+          genre: args.genre,
+          authorId: args.authorId,
+        });
+        return book.save();
+      },
+    },
+    
+<!-- DELETE DESTRUCTIVE - PERMANENT -->
+            deleteBook: {
+      type: BookType,
+      args: {
+        id: { type: graphql.GraphQLID },
+      },
+      resolve(parent, args) {
+        return Book.findByIdAndRemove(args.id);
+      },
+    },   
 });
 ```
