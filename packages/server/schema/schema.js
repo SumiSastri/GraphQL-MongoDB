@@ -10,8 +10,8 @@ const {
   GraphQLNonNull,
 } = graphql;
 
-const Book = require("../models/bookSchema");
-const Author = require("../models/authorSchema");
+const Book = require("../mongoose-models/bookSchema");
+const Author = require("../mongoose-models/authorSchema");
 const { BookProjects, BookClients } = require("../mocks");
 
 //STEP 1: DEFINE server-side graphQL typeS
@@ -51,13 +51,24 @@ const AuthorType = new GraphQLObjectType({
 
 // bookClient Type
 const BookClientType = new GraphQLObjectType({
-  name: "Client",
+  name: "BookClient",
 //   function that returns the graphQL strongly typed object
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
     phone: { type: GraphQLString },
+  }),
+});
+
+// bookProject Type
+const BookProjectType = new GraphQLObjectType({
+  name: 'BookProject',
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    status: { type: GraphQLString },
   }),
 });
 
@@ -93,6 +104,17 @@ const RootQuery = new GraphQLObjectType({
         return BookClients.find(client => client.id === args.id);
       },
     },
+
+      // bookProject object
+      bookProject: {
+        type: BookProjectType,
+        args: { id: { type: GraphQLID } },
+      //   resolver in the query - hard coded with vanilla JS find method
+        resolve(parent, args) {
+          return BookProjects.find(client => client.id === args.id);
+        },
+      },
+
     // books and authors as lists
     books: {
       type: new GraphQLList(BookType),
