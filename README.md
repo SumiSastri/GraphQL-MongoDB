@@ -53,7 +53,7 @@ dotenv file
 
 NODE_ENV="development"
 PORT=4000
-MONGO_URI=mongodb+srv://username:password@cluster0.slip5.mongodb.net/test
+MONGO_URI=mongodb+srv://username:password@cluster0.slip5.mongodb.net/test? (or name of db)
 # Dbs
 MongoDb
 Mongoose - ORM
