@@ -22,8 +22,10 @@ Run these package methods:
 `npx lerna bootstrap --hoist` - hoists dependencies from all packages in the root node module
 
 Client-side dependencies:
+You need to install graphQL both on the FE and BE
+
 Bootstrapped with `npx create-react-app`
-`npm install @apollo/client grapql react-router react-router-dom lodash lodash.flowright`
+`npm install @apollo/client grapql react-router react-router-dom react-icons lodash lodash.flowright`
 
 Server-side dependencies:
 There are several options like grapql-yoga and systems like graph-cms, etc., 

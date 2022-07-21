@@ -17,8 +17,9 @@ const Author = require("../mongoose-models/authorSchema");
 const BookProject = require("../mongoose-models/bookProjectSchema");
 const BookClient = require("../mongoose-models/bookClientSchema");
 
-//STEP 1: DEFINE server-side graphQL types
+//STEP 1: DEFINE TYPES
 const BookType = new GraphQLObjectType({
+  // book
   name: "Book",
   // void function to call the fields due to call-stack
   fields: () => ({
@@ -35,6 +36,7 @@ const BookType = new GraphQLObjectType({
   }),
 });
 
+// author
 const AuthorType = new GraphQLObjectType({
   name: "Author",
   fields: () => ({
@@ -42,7 +44,7 @@ const AuthorType = new GraphQLObjectType({
     name: { type: GraphQLString },
     century: { type: GraphQLInt },
     // Link author to a list of books with a constructor
-    books: {
+    book: {
       type: new GraphQLList(BookType),
       resolve(parent, args) {
         // mongoose method
@@ -52,7 +54,7 @@ const AuthorType = new GraphQLObjectType({
   }),
 });
 
-// bookClient Type
+// bookClient 
 const BookClientType = new GraphQLObjectType({
   name: "BookClient",
   //   function that returns the graphQL strongly typed object no related data
@@ -64,7 +66,7 @@ const BookClientType = new GraphQLObjectType({
   }),
 });
 
-// bookProject Type with connected data
+// bookProject with connected data
 const BookProjectType = new GraphQLObjectType({
   name: "BookProject",
   fields: () => ({
@@ -85,11 +87,12 @@ const BookProjectType = new GraphQLObjectType({
   },
 });
 
-// STEP 2: HTTP graphQL query to the db (Equivalent of GET request)
+// STEP 2: QUERY DATA by ID and LISTS
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    // book object
+    // GET BY ID
+    // book 
     book: {
       type: BookType,
       args: { id: { type: GraphQLString } },
@@ -97,7 +100,7 @@ const RootQuery = new GraphQLObjectType({
         return Book.findById(args.id);
       },
     },
-    // author object
+    // author 
     author: {
       type: AuthorType,
       args: { id: { type: GraphQLID } },
@@ -105,32 +108,31 @@ const RootQuery = new GraphQLObjectType({
         return Author.findById(args.id);
       },
     },
-    // bookClient object
+    // bookClient 
     bookClient: {
       type: BookClientType,
       args: { id: { type: GraphQLID } },
-      //   resolver in the query - hard coded with vanilla JS find method
       resolve(parent, args) {
         //  resolve with mongoose-model data
         return BookClient.findById(args.id);
       },
-      // // in mocks bookClients - hard coded test first
+      // in mocks bookClients - hard coded test first
       // return bookClients.find((client) => client.id === args.id);
     },
-  },
-  // bookProject object
+  
+  // bookProject 
   bookProject: {
     type: BookProjectType,
     args: { id: { type: GraphQLID } },
-    //   resolver in the query - hard coded with vanilla JS find method
     resolve(parent, args) {
       //  resolve with mongoose model data
       return BookProject.findById(args.id);
     },
-    //       // in mocks bookProjectss - hard coded test first
+    // in mocks bookProjects - hard coded test first
     // return bookProjects.find((project) => project.id === args.id);
   },
-  // LISTS
+
+  // QUERY DATA AND GET ALL DATA IN A LIST
   books: {
     type: new GraphQLList(BookType),
     resolve(parent, args) {
@@ -169,6 +171,7 @@ const RootQuery = new GraphQLObjectType({
       // },
     },
   },
+}
 });
 
 // STEP 3 - mutate data that you have fetched
@@ -195,6 +198,7 @@ const Mutation = new GraphQLObjectType({
       return book.save();
     },
   },
+
     // author
     addAuthor: {
       type: AuthorType,
@@ -210,6 +214,7 @@ const Mutation = new GraphQLObjectType({
         return author.save();
       },
     },
+
     //client
     addBookClient: {
       type: BookClientType,
@@ -227,6 +232,7 @@ const Mutation = new GraphQLObjectType({
         return bookClient.save();
       },
     },
+
       //project with enum type for status
     addBookProject: {
       type: BookProjectType,
@@ -302,6 +308,7 @@ const Mutation = new GraphQLObjectType({
         return Book.findByIdAndRemove(args.id);
       },
     },
+
        // author
        deleteAuthor: {
         type: AuthorType,
@@ -312,6 +319,7 @@ const Mutation = new GraphQLObjectType({
           return Author.findByIdAndRemove(args.id);
         },
       },
+
     // client -??
     deleteClient: {
       type: BookClientType,
@@ -328,6 +336,7 @@ const Mutation = new GraphQLObjectType({
         return BookClient.findByIdAndRemove(args.id);
       },
     },
+    
     // project
     deleteBookProject: {
       type: BookProjectType,
