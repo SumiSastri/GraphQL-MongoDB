@@ -12,7 +12,9 @@ const {
 
 const Book = require("../mongoose-models/bookSchema");
 const Author = require("../mongoose-models/authorSchema");
-const { bookProjects, bookClients } = require("../mocks");
+// const { bookProjects, bookClients } = require("../mocks");
+const BookProject = require('../mongoose-models/bookProjectSchema');
+const BookClient = require('../mongoose-models/bookClientSchema');
 
 //STEP 1: DEFINE server-side graphQL types
 const BookType = new GraphQLObjectType({
@@ -52,7 +54,7 @@ const AuthorType = new GraphQLObjectType({
 // bookClient Type
 const BookClientType = new GraphQLObjectType({
   name: "BookClient",
-  //   function that returns the graphQL strongly typed object
+  //   function that returns the graphQL strongly typed object no related data
   fields: () => ({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
@@ -61,7 +63,7 @@ const BookClientType = new GraphQLObjectType({
   }),
 });
 
-// bookProject Type
+// bookProject Type with connected data
 const BookProjectType = new GraphQLObjectType({
   name: "BookProject",
   fields: () => ({
@@ -74,8 +76,10 @@ const BookProjectType = new GraphQLObjectType({
   bookClient: {
     type: BookClientType,
     resolve(parent, args) {
+      // in mongoose schema
+      return BookClient.findById({ bookClientId: parent.id });
       // in mocks bookClients has bookClientId
-      return bookClients.findById(parent.bookClientId);
+      // return bookClients.findById(parent.bookClientId);
     },
   },
 });
@@ -106,58 +110,64 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       //   resolver in the query - hard coded with vanilla JS find method
       resolve(parent, args) {
-        // in mocks bookClients - hard coded test first
-        return bookClients.find((client) => client.id === args.id);
+        //  resolve with mongoose-model data
+        return BookClient.findById(args.id);
       },
+      // // in mocks bookClients - hard coded test first
+      // return bookClients.find((client) => client.id === args.id);
     },
+  },
 
-    // bookProject object
-    bookProject: {
-      type: BookProjectType,
-      args: { id: { type: GraphQLID } },
-      //   resolver in the query - hard coded with vanilla JS find method
-      resolve(parent, args) {
-              // in mocks bookProjectss - hard coded test first
-        return bookProjects.find((project) => project.id === args.id);
-      },
+  // bookProject object
+  bookProject: {
+    type: BookProjectType,
+    args: { id: { type: GraphQLID } },
+    //   resolver in the query - hard coded with vanilla JS find method
+    resolve(parent, args) {
+      //  resolve with mongoose model data
+      return BookProject.findById(args.id);
     },
+    //       // in mocks bookProjectss - hard coded test first
+    // return bookProjects.find((project) => project.id === args.id);
+  },
 
-    // LISTS
-    books: {
-      type: new GraphQLList(BookType),
-      resolve(parent, args) {
-        // all books - empty object returns them all
-        return Book.find({});
-        // FROM HARD-CODED DATA ARRAY
-        // return books;
-      },
+  // LISTS
+  books: {
+    type: new GraphQLList(BookType),
+    resolve(parent, args) {
+      // all books - empty object returns them all
+      return Book.find({});
+      // FROM HARD-CODED DATA ARRAY
+      // return books;
     },
-    // authors
-    authors: {
-      type: new GraphQLList(AuthorType),
-      resolve(parent, args) {
-        return Author.find({});
-      },
+  },
+  // authors
+  authors: {
+    type: new GraphQLList(AuthorType),
+    resolve(parent, args) {
+      return Author.find({});
     },
-    // clients
-    bookClients: {
-      type: new GraphQLList(BookClientType),
-      resolve(parent, args) {
-        // From mongoose models
-        // return BookClient.find({});
-        // From mocks
-        return bookClients;
-      },
+  },
+  // clients
+  bookClients: {
+    type: new GraphQLList(BookClientType),
+    resolve(parent, args) {
+      // From mongoose models
+      return BookClient.find({});
+      // From mocks
+      // return bookClients;
+      // },
     },
-    // projects
-    bookProjects: {
-      type: new GraphQLList(BookProjectType),
-      resolve(parent, args) {
-        // From mongoose models
-        // return BookProject.find({});
-          // From mocks
-        return bookProjects;
-      },
+  },
+  // projects
+  bookProjects: {
+    type: new GraphQLList(BookProjectType),
+    resolve(parent, args) {
+      // From mongoose models
+      return BookProject.find({});
+      // From mocks
+      // return bookProjects;
+      // },
     },
   },
 });

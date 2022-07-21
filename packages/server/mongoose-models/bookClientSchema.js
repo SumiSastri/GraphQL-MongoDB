@@ -12,4 +12,4 @@ const BookClientSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Book Client', BookClientSchema);
+module.exports = mongoose.model('BookClient', BookClientSchema);
