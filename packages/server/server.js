@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 4000;
-// const MONGO_URI = process.env.MONGO_URI
-const connectDB = require('./config/mongoDb');
+const MONGO_URI = process.env.MONGO_URI
+// const connectDB = require('./config/mongoDb');
 const helmet = require('helmet');
 const colors = require('colors');
 
@@ -24,13 +24,13 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 // db connect
-connectDB();
-// mongoose.connect(MONGO_URI, 
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }) .then(() => console.log('SUCCESS: MongoDB Connected...'.cyan.underline.bold))
-//   .catch(err => console.log(err, "DB CHECK: Not connected Check cloud connection, password, IP address"));
+// connectDB();
+mongoose.connect(MONGO_URI, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }) .then(() => console.log('SUCCESS: MongoDB Connected...'.cyan.underline.bold))
+  .catch(err => console.log(err, "DB CHECK: Not connected Check cloud connection, password, IP address"));
 
 
 

@@ -23,7 +23,7 @@ return (
                         <ul className="other-books">
                             <li key={item.id}>{ item.name }</li>
                           </ul>
-                          <button>Delete</button>  <button>Update</button>
+                          <button className="btn-primary">Delete</button>  <button className="btn-secondary">Update</button>
                           </div>
                       })}      
     </div>
