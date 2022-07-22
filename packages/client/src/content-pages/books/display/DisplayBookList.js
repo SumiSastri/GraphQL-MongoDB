@@ -27,7 +27,7 @@ const DisplayBookList = () => {
       return data.books.map((book) => {
         return (
           <div key={book.id}>
-            <li 
+            <li key={book.id}
                 onClick={() => {
                     setSelected(book.id);
                 } }

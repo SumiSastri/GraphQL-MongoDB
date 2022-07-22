@@ -1,7 +1,11 @@
 From Aditi Ravichandran/ Plural Sight: GraphQL the Big Picture
 [https://app.pluralsight.com/library/courses/graphql-big-picture/table-of-contents]
 
-GraphQL is an open source query language to call APIs. It's not a library. It's not a product. It's not a database. It is both a language and a run-time environment.
+Facebook started GraphQL as an internal project. They started the GraphQL project to overcome data fetching issues in their native mobile platform. 
+
+GraphQL was Facebook's opportunity to rethink mobile app data fetching from the perspective of product designers and developers. It moved the focus of development to the client apps where designers and developers spend their time and attention on. In 2015, Facebook open-sourced GraphQL.
+
+GraphQL today is an open source query language to call APIs. It's not a library. It's not a product. It's not a database. It is both a language and a run-time environment.
 
 The language is strongly-typed, with methods for queries, mutations, subscriptions and fragments.
 

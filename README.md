@@ -17,7 +17,7 @@ You should have an empty packages folder in root as well as a `lerna.json` and `
 3. In the `package.json` as well as the `lerna.json` add a version `  "version": "1.0.0",`
 4. Add a `.gitignore` file to ignore node modules
 
-Run these package methods:
+Run these package methods if needed.
 `npx lerna clean -y` removes duplicate node modules and any mismatches in the existing packages
 `npx lerna bootstrap --hoist` - hoists dependencies from all packages in the root node module
 
@@ -36,6 +36,8 @@ The libraries used in this repo are:
 
 express-graphql works well with JavaScript, express in a node environment.
 # Scripts:
+Update packages:
+In root `npx lerna bootstrap`
 
 Client-side:
 cd packages/client - `npm run start`
@@ -51,11 +53,15 @@ entry-point in package-json
  `"main": "server.js",`
 LocalHost: `http://localhost:4000/graphql` once you have set up the express server 
 
-dotenv file
+__dotenv file__
 
 NODE_ENV="development"
 PORT=4000
 MONGO_URI=mongodb+srv://username:password@cluster0.slip5.mongodb.net/test? (or name of db)
+
+__graphiql__
+
+`http://localhost:4000/graphql`
 # Dbs
 MongoDb
 Mongoose - ORM
