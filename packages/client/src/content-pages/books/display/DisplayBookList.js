@@ -26,14 +26,14 @@ const DisplayBookList = () => {
     } else {
       return data.books.map((book) => {
         return (
-          <div key={book.id}>
-            <li key={book.id}
+          <div  id="book-details" key={book.id}>
+            <ul key={book.id}
                 onClick={() => {
                     setSelected(book.id);
                 } }
             >
                 <li>{book.name}</li>
-            </li>
+            </ul>
             </div>    
         );
       });

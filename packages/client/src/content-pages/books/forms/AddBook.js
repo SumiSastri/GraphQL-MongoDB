@@ -25,7 +25,8 @@ const AddBook =() =>{
          });
     // the data has to be refetched with the Apollo server method to be displayed 
          const {refetch} = useGetBooksQuery();
-
+         
+// for drop down list
     function displayAuthors(loading, data) {
         if (error)
             return `Error! ${error.message}`;

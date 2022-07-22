@@ -8,6 +8,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.navbar-brand {
+  color: #df3ca6;
+}
+
+.navbar-brand img {
+  width: 30px;
+  margin-right: 10px;
+}
+
 #main h1{
   color: #444;
   text-align: center;
@@ -24,7 +33,6 @@ body {
   padding: 0;
 }
 
-
 #book-list li{
   display: inline-block;
   margin: 12px;
@@ -35,6 +43,28 @@ body {
   cursor: pointer;
   color: #880E4F;
 }
+
+.btn-primary {
+  background-color: red !important;
+}
+.btn-secondary {
+  background-color: lightseagreen;
+}
+
+.btn-primary:hover {
+  background-color: lightgrey;
+  opacity: 0.9;
+}
+
+.btn-secondary:hover {
+  background-color: lightskyblue;
+  opacity: 0.9;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
 
 form{
   background: #fff;
@@ -88,7 +118,7 @@ form button{
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
@@ -157,35 +187,3 @@ form button{
   }
 }
 
-
-
-.navbar-brand {
-  color: #df3ca6;
-}
-
-.navbar-brand img {
-  width: 30px;
-  margin-right: 10px;
-}
-
-
-.btn-primary {
-  background-color: red !important;
-}
-.btn-secondary {
-  background-color: lightseagreen;
-}
-
-.btn-primary:hover {
-  background-color: lightgrey;
-  opacity: 0.9;
-}
-
-.btn-secondary:hover {
-  background-color: lightskyblue;
-  opacity: 0.9;
-}
-
-.icon {
-  margin-right: 5px;
-}

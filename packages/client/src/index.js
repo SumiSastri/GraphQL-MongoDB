@@ -31,7 +31,38 @@ const link = from([
 
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          books: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+
+          authors: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+
+          bookClients: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+
+          bookProjects: {
+            merge(existing, incoming) {
+              return incoming;
+            },
+          },
+          
+        },
+      },
+    },
+  })
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

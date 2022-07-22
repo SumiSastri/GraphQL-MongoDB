@@ -1,4 +1,3 @@
-// parses graphql - as it is not JS
 import {gql} from "@apollo/client";
 
 // function to get the data
@@ -6,8 +5,8 @@ const GET_BOOKS = gql`
     {
         books {
             name
-            id
             authorId
+            id
         }
     }
 `;
@@ -16,6 +15,17 @@ const GET_AUTHORS = gql`
     {
         authors {
             name
+            id
+        }
+    }
+`;
+
+const GET_BOOK_CLIENTS = gql`
+    {
+        bookClients {
+            name
+            email
+            phone
             id
         }
     }
@@ -53,4 +63,4 @@ mutation {
 
 `
 
-export { GET_AUTHORS, GET_BOOKS, GET_BOOK_ID, CREATE_BOOK }
+export { GET_AUTHORS, GET_BOOKS, GET_BOOK_CLIENTS, GET_BOOK_ID, CREATE_BOOK }
