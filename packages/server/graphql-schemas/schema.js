@@ -284,8 +284,8 @@ const Mutation = new GraphQLObjectType({
         }
       },
 
-    // client -??
-    deleteClient: {
+      // TODO: check why forEach required
+    deleteBookClient: {
       type: BookClientType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
