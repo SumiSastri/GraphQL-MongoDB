@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 // data
 import { useGetBookIdQuery } from "../../../utils/hooks/useGetBookIdQuery";
-import { GET_BOOK_ID } from "../../../utils/queries/queries";
+import { GET_BOOK_ID, GET_BOOKS } from "../../../utils/queries/queries";
 import { DELETE_BOOK } from "../../../utils/mutations/deleteBookMutation";
 // components
 import Loading from "../../common-components/loading/Loading";
@@ -11,11 +11,10 @@ import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOc
 
 function DisplayBook({ bookId }) {
   const { error, loading, data } = useGetBookIdQuery(bookId);
+  // with refetch
   const [deleteBook] = useMutation(DELETE_BOOK, {
-    variables: {
-      id: bookId,
-    },
-    refetchQueries: [{ query: GET_BOOK_ID }],
+    variables: {id: bookId},
+    refetchQueries: [{ query: GET_BOOK_ID }, { query: GET_BOOKS }],
   });
 
   if (error)
