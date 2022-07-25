@@ -38,23 +38,21 @@ if (loading) return <div><Loading /></div>
 return (
   <div>
     <h2>{data.book.name}</h2>
-    <div id="book-details">
       <h5>Genre</h5><p>{data.book.genre}</p>
       <h5>Author</h5><p>{data.book.author.name}</p>
       <h6>More by the same author</h6> 
                       { data.book.author.books.map(item => {                
                           return  <div className="other-books" key={item.id}>
-                        <ul className="other-books">
-                            <li id="book-details" key={item.id}>{ item.name }</li>
-                          </ul>
+                        <ul id="book-details">
+                            <li >{ item.name }</li>
+                          <button className="btn-secondary">Update</button>
                           <button 
                           className="btn-primary"
                           onClick={deleteBook}
                           >Delete</button>  
-                          <button className="btn-secondary">Update</button>
+                          </ul>
                           </div>
                       })}      
-    </div>
   </div>
 );
 }

@@ -27,12 +27,12 @@ const DisplayBookList = () => {
       return data.books.map((book) => {
         return (
           <div  id="book-details" key={book.id}>
-            <ul key={book.id}
+            <ul  key={book.id}
                 onClick={() => {
                     setSelected(book.id);
                 } }
             >
-                <li>{book.name}</li>
+                <li >{book.name}</li>
             </ul>
             </div>    
         );
@@ -43,8 +43,8 @@ const DisplayBookList = () => {
     <div >
       <ul id='book-list'>
         <li>{displayBooks(loading, data, error)}</li>
-      </ul>
       <div>{selected && <DisplayBook bookId={selected} />}</div>
+      </ul>
     </div>
   );
 };
