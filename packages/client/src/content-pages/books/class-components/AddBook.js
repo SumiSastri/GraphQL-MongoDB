@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-import FormInput from "../../../common-components/forms/FormInput"
+import FormInput from "../../../common/forms/FormInput"
 // import {getAuthorsQuery, CREATE_BOOK} from "../../../../utils/queries"
 export default class AddBook extends Component { 
     constructor(props){

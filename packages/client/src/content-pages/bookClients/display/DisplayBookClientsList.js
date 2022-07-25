@@ -1,8 +1,8 @@
 // data
 import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQuery";
 // components
-import Loading from "../../common-components/loading/Loading";
-import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
+import Loading from "../../../common/loading/Loading";
+import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 import DisplayBookClientRow from "./DisplayClientRow";
 
 

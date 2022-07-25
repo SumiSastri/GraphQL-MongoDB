@@ -3,8 +3,8 @@ import { useQuery } from '@apollo/client';
 // data
 import { GET_BOOK_PROJECTS } from '../../../utils/queries/queries';
 // components
-import Loading from "../../common-components/loading/Loading";
-import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
+import Loading from "../../../common/loading/Loading";
+import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 import DisplayBookProjectsCard from './DisplayBookProjectsCard';
 
 export default function DisplayBookProjectsList({bookProject}) {

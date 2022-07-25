@@ -27,6 +27,8 @@ You need to install graphQL both on the FE and BE
 Bootstrapped with `npx create-react-app`
 `npm install @apollo/client grapql react-router react-router-dom react-icons lodash lodash.flowright`
 
+Add bootstrap CDK to `index.html`
+
 Server-side dependencies:
 There are several options like grapql-yoga and systems like graph-cms, etc., 
 

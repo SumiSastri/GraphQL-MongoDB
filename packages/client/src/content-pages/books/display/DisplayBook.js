@@ -6,8 +6,8 @@ import { useGetBookIdQuery } from "../../../utils/hooks/useGetBookIdQuery";
 import { GET_BOOK_ID, GET_BOOKS } from "../../../utils/queries/queries";
 import { DELETE_BOOK } from "../../../utils/mutations/deleteBookMutation";
 // components
-import Loading from "../../common-components/loading/Loading";
-import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
+import Loading from "../../../common/loading/Loading";
+import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 
 function DisplayBook({ bookId }) {
   const { error, loading, data } = useGetBookIdQuery(bookId);

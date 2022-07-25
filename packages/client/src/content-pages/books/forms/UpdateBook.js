@@ -7,8 +7,8 @@ import { useGetBooksQuery } from '../../../utils/hooks/useGetBooksQuery';
 import {CREATE_BOOK} from "../../../utils/mutations/createBookMutation";
 
 // components
-import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
-import Loading from "../../common-components/loading/Loading";
+import ErrorHasOccurredComponent from "../../../common//errors/ErrorHasOccurredComponent";
+import Loading from ".../../../common/loading/Loading";
 
 
 function UpdateBook({bookId}) {
