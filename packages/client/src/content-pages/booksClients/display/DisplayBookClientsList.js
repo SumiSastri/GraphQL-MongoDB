@@ -1,6 +1,5 @@
 // data
 import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQuery";
-
 // components
 import Loading from "../../common-components/loading/Loading";
 import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
@@ -13,9 +12,7 @@ const DisplayBookClientsList = () => {
     if (loading) return <Loading />
   return (
     <div>
-      {/* nullish coalesing */}
  {!loading && !error && (
-  //  bootstrap - added to public index.html page for styling
      <table className='table table-hover mt-3' >
 <thead>
   <tr>
@@ -29,12 +26,6 @@ const DisplayBookClientsList = () => {
 <tbody>
   {data.bookClients.map(bookClient => {
     return (
-      // <tr key={bookClient.id}>
-      //   <tr>{bookClient.id}</tr>
-      //   <tr>{bookClient.name}</tr>
-      //   <tr>{bookClient.email} </tr>
-      //   <tr>{bookClient.phone} </tr>
-      //   </tr>
       <DisplayBookClientRow key={bookClient.id} bookClient={bookClient} />
 
     );

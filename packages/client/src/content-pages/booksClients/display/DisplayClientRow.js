@@ -8,16 +8,6 @@ export default function DisplayBookClientRow({ bookClient }) {
   const [deleteBookClient] = useMutation(DELETE_BOOK_CLIENT, {
     variables: { id: bookClient.id },
     refetchQueries: [{ query: GET_BOOK_CLIENTS }],
-    // 2nd Option for refetch
-    // update(cache, { data: { deleteBookClient } }) {
-    //   const { bookClients } = cache.readQuery({ query: GET_BOOK_CLIENTS });
-    //   cache.writeQuery({
-    //     query: GET_BOOK_CLIENTS,
-    //     data: {
-    //       bookClients: bookClients.filter((bookClient) => bookClient.id !== deleteBookClient.id),
-    //     },
-    //   });
-    // },
   });
 
   return (

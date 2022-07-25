@@ -1,15 +1,14 @@
-import '../.././App.css';
-import DisplayBookList from './display/DisplayBookList'
-import AddBook from './forms/AddBook';
+import "../.././App.css";
+import DisplayBookList from "./display/DisplayBookList";
+import AddBook from "./forms/AddBook";
 
 function BooksIndex() {
   return (
     <div>
       <h2>Books and Authors Page</h2>
-      <DisplayBookList/>
-      <AddBook/>
+      <DisplayBookList />
+      <AddBook />
     </div>
-
   );
 }
 
