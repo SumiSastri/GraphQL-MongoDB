@@ -3,7 +3,7 @@ import '../.././App.css';
 function BookProjectsIndex() {
   return (
     <div>
-      <h2>Books Projects Page</h2>
+      <h2>Book Project's Page</h2>
     </div>
 
   );

@@ -4,16 +4,16 @@ import { useQuery, useMutation } from "@apollo/client";
 import "../../../App.css";
 // data
 import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
-import { GET_AUTHORS } from "../../../utils/queries/queries";
 import { CREATE_BOOK } from "../../../utils/mutations/createBookMutation";
+import { GET_AUTHORS } from "../../../utils/queries/queries";
 
 const AddBook = () => {
   const [name, setName] = useState("");
   const [genre, setGenre] = useState("");
   const [authorId, setAuthorId] = useState("");
+// load authors
   const { loading, error, data } = useQuery(GET_AUTHORS);
-
-  console.log("Add Book:", { error, data, loading });
+  console.log("Load Authors", { error, data, loading });
 
   const [createBook] = useMutation(CREATE_BOOK, {
     variables: {
@@ -23,7 +23,8 @@ const AddBook = () => {
     },
   });
   const { refetch } = useGetBooksQuery();
-  // for drop down list
+
+  // load authors
   function displayAuthors(loading, data) {
     if (error) return `Error! ${error.message}`;
     if (loading) {

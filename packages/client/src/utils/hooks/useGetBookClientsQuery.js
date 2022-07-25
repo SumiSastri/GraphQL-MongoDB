@@ -1,7 +1,7 @@
 import {useQuery, gql} from '@apollo/client';
 
 const GET_BOOK_CLIENTS = gql`
-    {
+  query  {
         bookClients {
             name
             email

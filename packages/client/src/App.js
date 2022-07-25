@@ -3,16 +3,16 @@ import React from 'react';
 
 import './App.css';
 import BooksIndex from './content-pages/books/BooksIndex';
-import BooksClientsIndex from './content-pages/booksClients/BooksClientsIndex';
-import BooksProjectsIndex from './content-pages/booksProjects/BooksProjectsIndex';
+import BookClientsIndex from './content-pages/bookClients/BookClientsIndex';
+import BookProjectsIndex from './content-pages/bookProjects/BookProjectsIndex';
 
 function App() {
   return (  
     <div className="App">   
       <h1>MERN Stack with GraphQL-Apollo Server</h1>
       <BooksIndex/>
-      <BooksClientsIndex/>
-      <BooksProjectsIndex/>
+      <BookClientsIndex/>
+      <BookProjectsIndex/>
     </div>
   );
 }

@@ -60,7 +60,16 @@ mutation {
         authorId
     }
 }
+`;
+// the query field here must be the same as the back end
+const CREATE_BOOK_CLIENT = gql`
+mutation {
+    addBookClient(name: "", email: "", phone: ""){
+        name
+        email
+        phone
+    }
+}
+`;
 
-`
-
-export { GET_AUTHORS, GET_BOOKS, GET_BOOK_CLIENTS, GET_BOOK_ID, CREATE_BOOK }
+export { GET_AUTHORS, GET_BOOKS, GET_BOOK_CLIENTS, GET_BOOK_ID, CREATE_BOOK, CREATE_BOOK_CLIENT }

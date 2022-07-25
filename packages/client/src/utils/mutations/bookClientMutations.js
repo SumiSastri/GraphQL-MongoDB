@@ -1,7 +1,8 @@
 import { gql } from '@apollo/client';
 
-const ADD_BOOK_CLIENT = gql`
-  mutation addClient($name: String!, $email: String!, $phone: String!) {
+// the mutuation should have the same name as back end
+const CREATE_BOOK_CLIENT = gql`
+  mutation addBookClient($name: String!, $email: String!, $phone: String!) {
     addBookClient(name: $name, email: $email, phone: $phone) {
       id
       name
@@ -13,7 +14,7 @@ const ADD_BOOK_CLIENT = gql`
 
 const DELETE_BOOK_CLIENT = gql`
   mutation deleteBookClient($id: ID!) {
-    deleteClient(id: $id) {
+    deleteBookClient(id: $id) {
       id
       name
       email
@@ -22,4 +23,4 @@ const DELETE_BOOK_CLIENT = gql`
   }
 `;
 
-export { ADD_BOOK_CLIENT, DELETE_BOOK_CLIENT };
+export { CREATE_BOOK_CLIENT, DELETE_BOOK_CLIENT };
