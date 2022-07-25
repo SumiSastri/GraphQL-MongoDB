@@ -4,16 +4,32 @@ import { useQuery, useMutation } from "@apollo/client";
 import "../../../App.css";
 // data
 import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
-import { CREATE_BOOK } from "../../../utils/mutations/createBookMutation";
+import { CREATE_BOOK } from "../../../utils/mutations/bookMutations";
 import { GET_AUTHORS } from "../../../utils/queries/queries";
 
 const AddBook = () => {
   const [name, setName] = useState("");
   const [genre, setGenre] = useState("");
   const [authorId, setAuthorId] = useState("");
+
 // load authors
-  const { loading, error, data } = useQuery(GET_AUTHORS);
-  console.log("Load Authors", { error, data, loading });
+const { loading, error, data } = useQuery(GET_AUTHORS);
+console.log("Load Authors", { error, data, loading });
+// load authors
+function displayAuthors(loading, data) {
+  if (error) return `Error! ${error.message}`;
+  if (loading) {
+    return <option disabled>Loading authors...</option>;
+  } else {
+    return data.authors.map((author) => {
+      return (
+        <option key={author.id} value={author.id}>
+          {author.name}
+        </option>
+      );
+    });
+  }
+}
 
   const [createBook] = useMutation(CREATE_BOOK, {
     variables: {
@@ -22,29 +38,21 @@ const AddBook = () => {
       authorId,
     },
   });
+
   const { refetch } = useGetBooksQuery();
-
-  // load authors
-  function displayAuthors(loading, data) {
-    if (error) return `Error! ${error.message}`;
-    if (loading) {
-      return <option disabled>Loading authors...</option>;
-    } else {
-      return data.authors.map((author) => {
-        return (
-          <option key={author.id} value={author.id}>
-            {author.name}
-          </option>
-        );
-      });
-    }
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Log submit new book:", name, genre, authorId);
     // new payload
     createBook(name, genre, authorId);
+    console.log(createBook, "BOOK PAYLOAD")
+    
+    const resetFormFields = () => {
+    setName('');
+    setGenre('');
+    setAuthorId('');
+    }
+    resetFormFields()
     refetch();
   };
 

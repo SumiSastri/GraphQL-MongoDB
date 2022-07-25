@@ -1,5 +1,5 @@
 import {useQuery, gql} from '@apollo/client';
-
+// matches server schema name
 const GET_BOOK_CLIENTS = gql`
   query  {
         bookClients {

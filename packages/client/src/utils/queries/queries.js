@@ -1,75 +1,92 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
 
 // function to get the data
 const GET_BOOKS = gql`
-    {
-        books {
-            name
-            authorId
-            id
-        }
+  {
+    books {
+      name
+      authorId
+      id
     }
+  }
 `;
 
 const GET_AUTHORS = gql`
-    {
-        authors {
-            name
-            id
-        }
+  {
+    authors {
+      name
+      id
     }
+  }
 `;
 
 const GET_BOOK_CLIENTS = gql`
-    {
-        bookClients {
-            name
-            email
-            phone
-            id
-        }
+  query BookClients {
+    bookClients {
+      id
+      name
+      email
+      phone
     }
+  }
 `;
+
+
+const GET_BOOK_PROJECTS = gql`
+  query getBookProjects {
+    bookProjects {
+      id
+      name
+      status
+    }
+  }
+`;
+
+
 
 const GET_BOOK_ID = gql`
-    query GetBookId($id: ID){
-        book(id: $id) {
-            id
-            name
-            genre
-            author {
-                id
-                name
-                century
-                books {
-                    name
-                    id
-                }
-            }
+  query GetBookId($id: ID) {
+    book(id: $id) {
+      id
+      name
+      genre
+      author {
+        id
+        name
+        century
+        books {
+          name
+          id
         }
+      }
     }
+  }
 `;
 
-// create is a mutation
-const CREATE_BOOK = gql`
-mutation {
-    addBook(name: "", genre: "", authorId: ""){
-        name
+const GET_BOOK_PROJECT_ID = gql`
+  query getBookProject($id: ID!) {
+    bookProject(id: $id) {
+      id
+      name
+      description
+      status
+      bookClient {
         id
-        genre
-        authorId
-    }
-}
-`;
-// the query field here must be the same as the back end
-const CREATE_BOOK_CLIENT = gql`
-mutation {
-    addBookClient(name: "", email: "", phone: ""){
         name
         email
         phone
+      }
     }
-}
+  }
 `;
 
-export { GET_AUTHORS, GET_BOOKS, GET_BOOK_CLIENTS, GET_BOOK_ID, CREATE_BOOK, CREATE_BOOK_CLIENT }
+
+export {
+  GET_AUTHORS,
+  GET_BOOKS,
+  GET_BOOK_CLIENTS,
+  GET_BOOK_PROJECTS,
+
+  GET_BOOK_ID,
+  GET_BOOK_PROJECT_ID
+};

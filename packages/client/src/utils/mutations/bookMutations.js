@@ -1,51 +1,26 @@
 
-// import {gql} from '@apollo/client';
+import {gql} from '@apollo/client';
 
-// const CREATE_BOOK = gql`
-// mutation CreateBook (
-    // $name: String!, 
-    // $genre:String!, 
-    // $authorId:ID!
-    // ) {
-//     createBook(
-    // name: $name, 
-    // genre: $genre, 
-    // authorId:$authorId
-    // ){
-//         name
-//         id
-//     }
-// }
-// `
-
-// const UPDATE_BOOK = gql`
-// mutation UpdateBook (
-    // $id: ID!
-    // $name: String!, 
-    // $genre:String!, 
-    // $authorId:ID!
-    // ) {
-//     updateBook(
-    // id: $id
-    // name: $name, 
-    // genre: $genre, 
-    // authorId:$authorId
-    // ){
-//         name
-//         genre
-//         id
-//         authorId
-//     }
-// }
-// `
-
-// const DELETE_BOOK = gql`
-// mutation DeleteBook($id: ID!) {
-//     deleteBook(id: $id) {
-//       id
-//     }
-//   }
-// `;
+const CREATE_BOOK = gql`
+mutation addBook($name: String!, $genre:String!, $authorId:ID!) {
+    addBook(name: $name, genre: $genre, authorId:$authorId){
+        name
+        id
+    }
+}
+`;
 
 
-// export { CREATE_BOOK, UPDATE_BOOK, DELETE_BOOK, };
+
+const DELETE_BOOK = gql`
+mutation deleteBook($id: ID!) {
+    deleteBook(id: $id) {
+      name
+      id
+    }
+  }
+`;
+
+
+
+export { CREATE_BOOK,  DELETE_BOOK };

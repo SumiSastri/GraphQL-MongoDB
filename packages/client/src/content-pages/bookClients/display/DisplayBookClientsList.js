@@ -4,7 +4,7 @@ import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQu
 import Loading from "../../common-components/loading/Loading";
 import ErrorHasOccurredComponent from "../../common-components/errors/ErrorHasOccurredComponent";
 import DisplayBookClientRow from "./DisplayClientRow";
-import AddBookClient from "../forms/AddBookClient";
+
 
 const DisplayBookClientsList = () => {
   const { error, loading, data } = useGetBookClientsQuery();
@@ -14,7 +14,7 @@ const DisplayBookClientsList = () => {
   return (
     <div>
  {!loading && !error && (
-   <><AddBookClient />
+   <>
    <table className='table table-hover mt-3'>
           <thead>
             <tr>

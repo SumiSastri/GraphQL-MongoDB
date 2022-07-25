@@ -4,26 +4,13 @@ import { useMutation } from "@apollo/client";
 
 // data
 import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQuery";
-import { CREATE_BOOK_CLIENT } from '../../../utils/queries/queries';
+import { CREATE_BOOK_CLIENT } from '../../../utils/mutations/bookClientMutations';
 
 export default function AddBookClient() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   
-
-// method 2 with apollo cache
-//   const [addClient] = useMutation(ADD_BOOK_CLIENT, {
-//     variables: { name, email, phone },
-//     update(cache, { data: { addClient } }) {
-//       const { clients } = cache.readQuery({ query: GET_BOOK_CLIENTS });
-
-//       cache.writeQuery({
-//         query: GET_BOOK_CLIENTS,
-//         data: { clients: [...clients, addClient] },
-//       });
-//     },
-//   });
 
   const [createBookClient] = useMutation(CREATE_BOOK_CLIENT, {
     variables: {
@@ -32,28 +19,29 @@ export default function AddBookClient() {
         phone
     },
   });
+
   const { refetch } = useGetBookClientsQuery();
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log("Log new book-client:", name, phone, email);
 
- 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Log submit new book client:",  name, email, phone);
-
-// validation
+      // validation
     if (name === '' || email === '' || phone === '') {
       return alert('Please fill in all fields');
     }
 
-  // new payload
-  createBookClient(name, email, phone);
-  refetch();
+      // new payload
+      createBookClient(name, phone, email);
+      console.log(createBookClient, "BOOK CLIENT PAYLOAD")
 
-//   clear fields
-    // setName('');
-    // setEmail('');
-    // setPhone('');
+  const resetFormFields = () => {
+    setName('');
+    setEmail('');
+    setPhone('');
+    }
+    resetFormFields()
+    refetch()
   };
-
 
 // using bootstrap modal
   return (

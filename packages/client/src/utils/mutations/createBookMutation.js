@@ -8,5 +8,5 @@ mutation addBook($name: String!, $genre:String!, $authorId:ID!) {
         id
     }
 }
-`
+`;
 export {CREATE_BOOK}

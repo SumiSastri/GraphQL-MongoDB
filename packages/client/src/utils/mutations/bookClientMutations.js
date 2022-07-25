@@ -12,6 +12,7 @@ const CREATE_BOOK_CLIENT = gql`
   }
 `;
 
+
 const DELETE_BOOK_CLIENT = gql`
   mutation deleteBookClient($id: ID!) {
     deleteBookClient(id: $id) {
@@ -22,5 +23,6 @@ const DELETE_BOOK_CLIENT = gql`
     }
   }
 `;
+
 
 export { CREATE_BOOK_CLIENT, DELETE_BOOK_CLIENT };
