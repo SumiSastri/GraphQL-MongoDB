@@ -1,6 +1,6 @@
 import '../.././App.css';
 
-function BooksProjectsIndex() {
+function BookProjectsIndex() {
   return (
     <div>
       <h2>Books Projects Page</h2>
@@ -9,4 +9,4 @@ function BooksProjectsIndex() {
   );
 }
 
-export default BooksProjectsIndex;
+export default BookProjectsIndex;
