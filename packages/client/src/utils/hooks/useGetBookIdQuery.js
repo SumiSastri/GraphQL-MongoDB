@@ -20,7 +20,7 @@ const GET_BOOK_ID = gql`
 `;
 
 export const useGetBookIdQuery = (id) => {
-    const { loading, error, data } = useQuery(GET_BOOK_ID,{
+    const { loading, error, data, refetch } = useQuery(GET_BOOK_ID,{
         variables: {
             id
         }
@@ -29,5 +29,6 @@ export const useGetBookIdQuery = (id) => {
         error,
         data,
         loading,
+        refetch,
     };
 };
