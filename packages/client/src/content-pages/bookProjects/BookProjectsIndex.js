@@ -15,7 +15,6 @@ const BookProjectsIndex = () => {
       <div className="container p-5">
       <AddBookProjectForm />
       </div>
-     
       <DisplayBookProjectsList />
       
     </div>

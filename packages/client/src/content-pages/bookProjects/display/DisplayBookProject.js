@@ -7,10 +7,11 @@ import { GET_BOOK_PROJECT_ID } from "../../../utils/queries/queries";
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 import DeleteProjectButton from "./DeleteBookProject";
+// import UpdateBookProjectForm from '../forms/UpdateBookProjectForm';
 // import ClientInfo from "../../bookClients/display/BookClientInfo"
 // import {useGetBookProjectIdQuery} from "../../../utils/hooks/useGetBookProjectIdQuery"
 
-const DisplayBookProject = ({ bookProjectId }) => {
+const DisplayBookProject = () => {
     // with hooks and refetch
      // const { error, loading, data } = useGetBookProjectIdQuery(bookProjectId);
     // const [deleteBookProject] = useMutation(DELETE_BOOK_PROJECT, {
@@ -47,6 +48,7 @@ const DisplayBookProject = ({ bookProjectId }) => {
       </button>
     </div> */}
            <DeleteProjectButton/>
+           {/* <UpdateBookProjectForm/> */}
           {/* <ClientInfo bookClient={data.bookProject.bookClient} /> */}
 
         </div>
