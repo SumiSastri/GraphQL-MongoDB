@@ -199,7 +199,13 @@ const Mutation = new GraphQLObjectType({
         return bookClient.save();
       }
     },
-
+    // TODOdouble check front end mutation with backend mutation - bookProject
+    // # bookClient {
+    //   #   id
+    //   #   name
+    //   #   email
+    //   #   phone
+    //   # }
     addBookProject: {
       type: BookProjectType,
       args: {
@@ -223,7 +229,7 @@ const Mutation = new GraphQLObjectType({
           name: args.name,
           description: args.description,
           status: args.status,
-          bookClientId: args.clientId,
+          bookClientId: args.bookClientId,
         });
         return bookProject.save();
       }
@@ -284,19 +290,19 @@ const Mutation = new GraphQLObjectType({
         }
       },
 
-      // TODO: check why forEach required
+      // For each if you want to delete all projects associated with a client Id??
     deleteBookClient: {
       type: BookClientType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
-        BookProject.find({ bookClientId: args.id })
-        .then((bookProjects) => {
-          bookProjects.forEach((bookProject) => {
-            bookProject.remove();
-          });
-        });
+        // BookProject.find({ bookClientId: args.id })
+        // .then((bookProjects) => {
+        //   bookProjects.forEach((bookProject) => {
+        //     bookProject.remove();
+        //   });
+        // });
         return BookClient.findByIdAndRemove(args.id);
       }
     },

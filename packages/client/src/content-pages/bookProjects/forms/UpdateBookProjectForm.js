@@ -12,8 +12,9 @@ const UpdateBookProjectForm = ({ bookProject}) => {
     const { loading, error, data } = useQuery(GET_BOOK_PROJECT_ID, {
       variables: { id:bookProject.id },
     });
-  const [name, setName] = useState(data.bookProject.name);
-  const [description, setDescription] = useState(bookProject.description);
+  const [name, setName] = useState(bookProject.name);
+  const [description, setDescription] = useState(data.bookProject.description);
+//   switch required for enum
   const [status, setStatus] = useState(() => {
     switch (data.bookProject.status) {
       case "Not Started":
