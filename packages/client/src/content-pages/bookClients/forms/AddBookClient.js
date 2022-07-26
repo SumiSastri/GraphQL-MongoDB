@@ -1,49 +1,48 @@
 import React, { useState } from "react";
-import { FaUser } from 'react-icons/fa';
+import { FaUser } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 
 // data
 import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQuery";
-import { CREATE_BOOK_CLIENT } from '../../../utils/mutations/bookClientMutations';
+import { CREATE_BOOK_CLIENT } from "../../../utils/mutations/bookClientMutations";
 
-export default function AddBookClient() {
+const AddBookClient = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  
 
   const [createBookClient] = useMutation(CREATE_BOOK_CLIENT, {
     variables: {
-        name, 
-        email, 
-        phone
+      name,
+      email,
+      phone,
     },
   });
 
   const { refetch } = useGetBookClientsQuery();
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("Log new book-client:", name, phone, email);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Log new book-client:", name, phone, email);
 
-      // validation
-    if (name === '' || email === '' || phone === '') {
-      return alert('Please fill in all fields');
+    // validation
+    if (name === "" || email === "" || phone === "") {
+      return alert("Please fill in all fields");
     }
 
-      // new payload
-      createBookClient(name, phone, email);
-      console.log(createBookClient, "BOOK CLIENT PAYLOAD")
+    // new payload
+    createBookClient(name, phone, email);
+    console.log(createBookClient, "BOOK CLIENT PAYLOAD");
 
-  const resetFormFields = () => {
-    setName('');
-    setEmail('');
-    setPhone('');
-    }
-    resetFormFields()
-    refetch()
+    const resetFormFields = () => {
+      setName("");
+      setEmail("");
+      setPhone("");
+    };
+    resetFormFields();
+    refetch();
   };
 
-// using bootstrap modal
+  // using bootstrap modal
   return (
     <>
       <button
@@ -124,4 +123,5 @@ export default function AddBookClient() {
       </div>
     </>
   );
-}
+};
+export default AddBookClient;

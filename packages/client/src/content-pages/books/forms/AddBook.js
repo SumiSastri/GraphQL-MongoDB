@@ -12,24 +12,24 @@ const AddBook = () => {
   const [genre, setGenre] = useState("");
   const [authorId, setAuthorId] = useState("");
 
-// load authors
-const { loading, error, data } = useQuery(GET_AUTHORS);
-console.log("Load Authors", { error, data, loading });
-// load authors
-function displayAuthors(loading, data) {
-  if (error) return `Error! ${error.message}`;
-  if (loading) {
-    return <option disabled>Loading authors...</option>;
-  } else {
-    return data.authors.map((author) => {
-      return (
-        <option key={author.id} value={author.id}>
-          {author.name}
-        </option>
-      );
-    });
+  // load authors
+  const { loading, error, data } = useQuery(GET_AUTHORS);
+  console.log("Load Authors", { error, data, loading });
+  // load authors
+  function displayAuthors(loading, data) {
+    if (error) return `Error! ${error.message}`;
+    if (loading) {
+      return <option disabled>Loading authors...</option>;
+    } else {
+      return data.authors.map((author) => {
+        return (
+          <option key={author.id} value={author.id}>
+            {author.name}
+          </option>
+        );
+      });
+    }
   }
-}
 
   const [createBook] = useMutation(CREATE_BOOK, {
     variables: {
@@ -45,14 +45,14 @@ function displayAuthors(loading, data) {
     console.log("Log submit new book:", name, genre, authorId);
     // new payload
     createBook(name, genre, authorId);
-    console.log(createBook, "BOOK PAYLOAD")
-    
+    console.log(createBook, "BOOK PAYLOAD");
+
     const resetFormFields = () => {
-    setName('');
-    setGenre('');
-    setAuthorId('');
-    }
-    resetFormFields()
+      setName("");
+      setGenre("");
+      setAuthorId("");
+    };
+    resetFormFields();
     refetch();
   };
 

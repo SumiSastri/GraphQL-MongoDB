@@ -3,7 +3,7 @@ import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQu
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
-import DisplayBookClientRow from "./DisplayClientRow";
+import BookClientRow from "./BookClientRow";
 
 
 const DisplayBookClientsList = () => {
@@ -28,7 +28,7 @@ const DisplayBookClientsList = () => {
           <tbody>
             {data.bookClients.map(bookClient => {
               return (
-                <DisplayBookClientRow key={bookClient.id} bookClient={bookClient} />
+                <BookClientRow key={bookClient.id} bookClient={bookClient} />
 
               );
             })}

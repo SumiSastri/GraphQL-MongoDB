@@ -1,18 +1,17 @@
-import { FaTrash } from 'react-icons/fa';
-import { useMutation } from '@apollo/client';
-import { DELETE_BOOK_CLIENT } from '../../../utils/mutations/bookClientMutations';
-import { GET_BOOK_CLIENTS } from '../../../utils/queries/queries';
+import { FaTrash } from "react-icons/fa";
+import { useMutation } from "@apollo/client";
+import { DELETE_BOOK_CLIENT } from "../../../utils/mutations/bookClientMutations";
+import { GET_BOOK_CLIENTS } from "../../../utils/queries/queries";
 
-
-export default function DisplayBookClientRow({ bookClient }) {
+const BookClientRow = ({ bookClient }) => {
   const [deleteBookClient] = useMutation(DELETE_BOOK_CLIENT, {
     variables: { id: bookClient.id },
     refetchQueries: [{ query: GET_BOOK_CLIENTS }],
   });
 
   return (
-    <tr>     
-     <td>{bookClient.id}</td>
+    <tr>
+      <td>{bookClient.id}</td>
       <td>{bookClient.name}</td>
       <td>{bookClient.email}</td>
       <td>{bookClient.phone}</td>
@@ -23,5 +22,6 @@ export default function DisplayBookClientRow({ bookClient }) {
       </td>
     </tr>
   );
-}
+};
 
+export default BookClientRow;

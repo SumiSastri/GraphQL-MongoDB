@@ -9,11 +9,11 @@ import { DELETE_BOOK } from "../../../utils/mutations/deleteBookMutation";
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 
-function DisplayBook({ bookId }) {
+const DisplayBook = ({ bookId }) => {
   const { error, loading, data } = useGetBookIdQuery(bookId);
   // with refetch
   const [deleteBook] = useMutation(DELETE_BOOK, {
-    variables: {id: bookId},
+    variables: { id: bookId },
     refetchQueries: [{ query: GET_BOOK_ID }, { query: GET_BOOKS }],
   });
 
@@ -54,6 +54,6 @@ function DisplayBook({ bookId }) {
       })}
     </div>
   );
-}
+};
 
 export default DisplayBook;

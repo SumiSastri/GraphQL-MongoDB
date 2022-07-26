@@ -7,7 +7,7 @@ import BookProjectsIndex from "../content-pages/bookProjects/BookProjectsIndex";
 import BooksIndex from "../content-pages/books/BooksIndex";
 import DisplayBookProject from "../content-pages/bookProjects/display/DisplayBookProject";
 
-function PageRouting() {
+const PageRouting = () => {
   return (
     <div>
       <Router>
