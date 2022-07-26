@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import "../.././App.css";
 import DisplayBookProjectsList from "./display/DisplayBookProjectsList";
+import AddBookProjectForm from "./forms/AddBookProjectForm"
 
 const BookProjectsIndex = () => {
   return (
@@ -10,7 +11,13 @@ const BookProjectsIndex = () => {
       <Link to='/' className='btn btn-dark btn-sm w-25 d-inline ms-auto'>
         Back to Home Page
       </Link>
+      
+      <div className="container p-5">
+      <AddBookProjectForm />
+      </div>
+     
       <DisplayBookProjectsList />
+      
     </div>
   );
 };

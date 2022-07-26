@@ -1,16 +1,6 @@
 // parses graphql - as it is not JS
 import { gql } from '@apollo/client';
 
-// function to get the data
-const getBooksQuery = gql`
-    {
-        books {
-            name
-            id
-        }
-    }
-`;
-
 const GET_AUTHORS = gql`
     {
         authors {
@@ -28,7 +18,16 @@ mutation {
         id
     }
 }
+`;
 
-`
+// function to get the data
+const getBooksQuery = gql`
+    {
+        books {
+            name
+            id
+        }
+    }
+`;
 
 export { GET_AUTHORS, getBooksQuery, CREATE_BOOK }

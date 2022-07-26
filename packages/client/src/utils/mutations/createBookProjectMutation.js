@@ -1,7 +1,7 @@
 import {gql} from '@apollo/client';
 
 const CREATE_BOOK_PROJECT = gql`
-  mutation addBookProject(
+  mutation AddBookProject(
     $name: String!
     $description: String!
     $status: ProjectStatus!
@@ -13,7 +13,7 @@ const CREATE_BOOK_PROJECT = gql`
       status: $status
       bookClientId: $bookClientId
     ) {
-      bookClientId
+      id
       name
       description
       status
@@ -26,5 +26,4 @@ const CREATE_BOOK_PROJECT = gql`
     }
   }
 `;
-
 export {CREATE_BOOK_PROJECT}

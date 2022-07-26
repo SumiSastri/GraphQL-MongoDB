@@ -17,6 +17,9 @@ const BookProjectCard = ({ bookProject }) => {
           <p className='small'>
             Status: <strong>{bookProject.status}</strong>
           </p>
+          <p className='small'>
+            Description: <strong>{bookProject.description}</strong>
+          </p>
         </div>
       </div>
     </div>

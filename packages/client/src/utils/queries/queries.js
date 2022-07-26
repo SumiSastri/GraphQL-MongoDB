@@ -35,9 +35,10 @@ const GET_BOOK_CLIENTS = gql`
 const GET_BOOK_PROJECTS = gql`
   query getBookProjects {
     bookProjects {
-      id
-      name
-      status
+     id
+     name
+     status
+     description
     }
   }
 `;
@@ -63,6 +64,7 @@ const GET_BOOK_ID = gql`
   }
 `;
 
+// TODO: Debug this query against server side schema
 const GET_BOOK_PROJECT_ID = gql`
   query GetBookProjectId($id: ID!) {
     bookProject(id: $id) {

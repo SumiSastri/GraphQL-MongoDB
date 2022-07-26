@@ -29,7 +29,6 @@ const DisplayBookClientsList = () => {
             {data.bookClients.map(bookClient => {
               return (
                 <BookClientRow key={bookClient.id} bookClient={bookClient} />
-
               );
             })}
           </tbody>

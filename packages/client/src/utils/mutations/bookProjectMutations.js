@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const ADD_BOOK_PROJECT = gql`
+const CREATE_BOOK_PROJECT = gql`
   mutation AddBookProject(
     $name: String!
     $description: String!
@@ -62,4 +62,4 @@ const UPDATE_BOOK_PROJECT = gql`
   }
 `;
 
-export { ADD_BOOK_PROJECT, DELETE_BOOK_PROJECT, UPDATE_BOOK_PROJECT };
+export { CREATE_BOOK_PROJECT, DELETE_BOOK_PROJECT, UPDATE_BOOK_PROJECT };
