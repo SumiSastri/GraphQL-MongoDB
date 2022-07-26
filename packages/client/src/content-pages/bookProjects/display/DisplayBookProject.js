@@ -2,21 +2,16 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 // data
-// import { useGetBookProjectIdQuery } from "../../../utils/hooks/useGetBookProjectIdQuery";
 import { GET_BOOK_PROJECT_ID } from "../../../utils/queries/queries";
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 
-const DisplayBookProject = (bookProjectId) => {
+const DisplayBookProject = () => {
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_BOOK_PROJECT_ID, {
     variables: { id },
   });
-  //   console.log("DisplayBookProject:", { error, data, loading });
-
-  //   SECOND METHOD OF DISPLAY WITH REACT CUSTOM HOOK
-  // const { error, loading, data } = useGetBookProjectIdQuery(bookProjectId);
   //   console.log("DisplayBookProject:", { error, data, loading });
 
   if (loading) return <Loading />;
@@ -25,7 +20,6 @@ const DisplayBookProject = (bookProjectId) => {
   return (
     <div>
       {!loading && !error && (
-        // p is padding in bootstrap
         <div className='mx-auto w-75 card p-5'>
           <Link
             to='/book-projects'
