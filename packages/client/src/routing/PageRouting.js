@@ -5,6 +5,7 @@ import PageLinks from "./PageLinks";
 import BookClientsIndex from "../content-pages/bookClients/BookClientsIndex";
 import BookProjectsIndex from "../content-pages/bookProjects/BookProjectsIndex";
 import BooksIndex from "../content-pages/books/BooksIndex";
+import DisplayBookProject from "../content-pages/bookProjects/display/DisplayBookProject";
 
 function PageRouting() {
   return (
@@ -27,6 +28,12 @@ function PageRouting() {
               path='/book-projects'
               component={BookProjectsIndex} 
             />
+
+            {/* Routes with IDs */}
+
+            <Route 
+            path='/book-projects/:id' 
+            component={DisplayBookProject}  />
         
           </Switch>
       </Router>

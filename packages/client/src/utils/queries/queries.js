@@ -64,18 +64,18 @@ const GET_BOOK_ID = gql`
 `;
 
 const GET_BOOK_PROJECT_ID = gql`
-  query getBookProject($id: ID!) {
+  query GetBookProjectId($id: ID!) {
     bookProject(id: $id) {
       id
       name
       description
       status
-      bookClient {
-        id
-        name
-        email
-        phone
-      }
+      # bookClient {
+      #   id
+      #   name
+      #   email
+      #   phone
+      # }
     }
   }
 `;

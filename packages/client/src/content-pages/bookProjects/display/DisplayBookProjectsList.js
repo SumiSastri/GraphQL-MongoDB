@@ -5,7 +5,7 @@ import { GET_BOOK_PROJECTS } from '../../../utils/queries/queries';
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
-import DisplayBookProjectsCard from './DisplayBookProjectsCard';
+import BookProjectCard from './BookProjectCard';
 
 export default function DisplayBookProjectsList({bookProject}) {
   const { loading, error, data } = useQuery(GET_BOOK_PROJECTS);
@@ -18,7 +18,7 @@ export default function DisplayBookProjectsList({bookProject}) {
         <div className='row mt-4'>
           {data.bookProjects.map((bookProject) => (
           <div key= {bookProject.id}>
-          <DisplayBookProjectsCard key= {bookProject.id} bookProject={bookProject}  />
+          <BookProjectCard key= {bookProject.id} bookProject={bookProject}  />
               </div>
           ))}
         </div>
