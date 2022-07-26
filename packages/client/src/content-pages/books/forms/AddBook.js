@@ -44,16 +44,16 @@ const AddBook = () => {
     e.preventDefault();
     console.log("Log submit new book:", name, genre, authorId);
     // new payload
+    refetch();
     createBook(name, genre, authorId);
     console.log(createBook, "BOOK PAYLOAD");
-
+  
     const resetFormFields = () => {
       setName("");
       setGenre("");
       setAuthorId("");
     };
     resetFormFields();
-    refetch();
   };
 
   return (

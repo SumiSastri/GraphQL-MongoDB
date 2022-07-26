@@ -3,20 +3,23 @@ import { FaList } from "react-icons/fa";
 import { useMutation, useQuery } from "@apollo/client";
 
 // data
+import {useGetBookProjectsQuery} from "../../../utils/hooks/useGetBookProjectsQuery"
 import { CREATE_BOOK_PROJECT } from "../../../utils/mutations/bookProjectMutations";
 import {
   GET_BOOK_CLIENTS,
-  GET_BOOK_PROJECTS,
+  // GET_BOOK_PROJECTS,
 } from "../../../utils/queries/queries";
+
 
 const AddBookProjectForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  // use the enum value
   const [status, setStatus] = useState("new");
+  
   // load book clients
   const { loading, error, data } = useQuery(GET_BOOK_CLIENTS);
   console.log(data, "GET BOOK CLIENTS data");
-
   const [bookClientId, setBookClientId] = useState("");
 
   // const [addBookProject] = useMutation(CREATE_BOOK_PROJECT, {
@@ -39,7 +42,7 @@ const AddBookProjectForm = () => {
     },
   });
 
-  // const { refetch } = useGetBookProjectsQuery();
+  const { refetch } = useGetBookProjectsQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(name, description, bookClientId, status, "LOG SUBMIT ADD BOOK PROJECT FORM");
@@ -69,6 +72,7 @@ const AddBookProjectForm = () => {
       setBookClientId("");
     };
     resetFormFields();
+    refetch();
   };
 
   if (loading) return null;
