@@ -11,7 +11,7 @@ const BookProjectsIndex = () => {
       <Link to='/' className='btn btn-dark btn-sm w-25 d-inline ms-auto'>
         Back to Home Page
       </Link>
-      <div className='container p-5'>
+      <div className='container p-3'>
         <AddBookProjectForm />
       </div>
       <DisplayBookProjectsList />

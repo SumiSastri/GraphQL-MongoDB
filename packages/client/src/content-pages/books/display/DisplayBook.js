@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
+
 // data
 import { GET_BOOK_ID, GET_BOOKS } from "../../../utils/queries/queries";
 import { DELETE_BOOK } from "../../../utils/mutations/book-mutations/deleteBook";
@@ -39,16 +40,17 @@ const DisplayBook = ({ bookId }) => {
       <h6>More by the same author</h6>
       {data.book.author.books.map((item) => {
         return (
+        
           <div className='other-books' key={item.id}>
             <ul id='book-details'>
               <li>{item.name}</li>
-              <button className='btn-secondary'>Update  <FaEdit /></button>
-             
-              <button className='btn-primary' onClick={deleteBook}>
+              <button className='btn-secondary'>Update<FaEdit /></button>
+              <button className='btn-danger' onClick={deleteBook}>
                 Delete <FaTrash />
               </button>
             </ul>
           </div>
+       
         );
       })}
     </div>

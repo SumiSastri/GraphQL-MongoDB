@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
+import { FaList, FaUser } from "react-icons/fa";
 // data
 import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
 // components
@@ -21,12 +22,11 @@ const DisplayBookList = () => {
         return (
           <div id='book-details' key={book.id}>
             <ul
-              key={book.id}
               onClick={() => {
                 setSelected(book.id);
               }}
             >
-              <li>{book.name}</li>
+              <li>{book.name} </li>
             </ul>
           </div>
         );
@@ -35,10 +35,19 @@ const DisplayBookList = () => {
   };
   return (
     <div>
+       <Link to='/add-book-form'>
+       <button className='btn-secondary m-3'>
+          <FaList className='icon' />
+          <FaUser className='icon' />
+      Add A Book & Author
+        </button>
+       
+      </Link>
       <ul id='book-list'>
         <li>{displayBooks(loading, data, error)}</li>
         <div>{selected && <DisplayBook bookId={selected} />}</div>
       </ul>
+     
     </div>
   );
 };

@@ -62,15 +62,14 @@ const AddBookProjectForm = () => {
   const { refetch } = useGetBookProjectsQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      "Log new book project:",
-      name,
-      description,
-      bookClientId,
-      status
-    );
+    // console.log(
+    //   "Log new book project:",
+    //   name,
+    //   description,
+    //   bookClientId,
+    //   status
+    // );
 
-    // validation
     if (
       name === "" ||
       description === "" ||
@@ -80,11 +79,9 @@ const AddBookProjectForm = () => {
       return alert("Please fill in all fields");
     }
 
-    // new payload
     createBookProject(name, description, bookClientId, status);
-    console.log(createBookProject, "BOOK Project PAYLOAD");
+    // console.log(createBookProject, "BOOK Project PAYLOAD");
 
-    // reset after submission
     const resetFormFields = () => {
       setName("");
       setDescription("");
@@ -92,7 +89,6 @@ const AddBookProjectForm = () => {
       setBookClientId("");
     };
     resetFormFields();
-    // call refetch
     refetch();
   };
 

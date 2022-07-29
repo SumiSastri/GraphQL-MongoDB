@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
+import { Link } from "react-router-dom";
+
 // styling
 import "../../../App.css";
 // data
@@ -42,11 +44,10 @@ const AddBook = () => {
   const { refetch } = useGetBooksQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Log submit new book:", name, genre, authorId);
-    // new payload
-    refetch();
+    // console.log("Log submit new book:", name, genre, authorId);
+
     createBook(name, genre, authorId);
-    console.log(createBook, "BOOK PAYLOAD");
+    // console.log(createBook, "BOOK PAYLOAD");
   
     const resetFormFields = () => {
       setName("");
@@ -54,10 +55,16 @@ const AddBook = () => {
       setAuthorId("");
     };
     resetFormFields();
+    refetch()
   };
 
   return (
     <form id='add-book' onSubmit={handleSubmit}>
+          <h4>Add a new book</h4>
+          <Link to='/books-and-authors' className='btn btn-dark btn-sm w-25 d-inline ms-auto'>
+        Back to Books and Authors Page
+      </Link>
+      <hr/>
       <div className='field'>
         <label>Book name:</label>
         <input
@@ -79,10 +86,9 @@ const AddBook = () => {
         <select value={authorId} onChange={(e) => setAuthorId(e.target.value)}>
           <option>Select author</option>
           {displayAuthors(loading, data)}
-        </select>
+        </select>     
       </div>
-      <h4>Add book</h4>
-      <button>+</button>
+      <button type='submit' className='btn btn-primary'>Save</button>     
     </form>
   );
 };

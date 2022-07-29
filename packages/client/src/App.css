@@ -50,7 +50,7 @@ li {
 }
 
 .btn-primary {
-  background-color: red !important;
+  background-color: grey !important;
 }
 .btn-secondary {
   background-color: lightseagreen;
@@ -105,7 +105,6 @@ form button{
   border-radius: 50%;
   cursor: pointer;
 }
-
 
 #book-details{
   width: 40%;

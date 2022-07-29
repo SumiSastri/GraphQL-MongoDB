@@ -11,7 +11,8 @@ const PageLinks = () => {
           <ul id='book-details'>
             <Link to='/books-and-authors'>
               <li>Books and Authors</li>
-            </Link>
+            </Link> 
+            <Link to='/books-and-authors/:id'/>   
             <Link to='/book-clients'>
               <li>Book Clients</li>
             </Link>

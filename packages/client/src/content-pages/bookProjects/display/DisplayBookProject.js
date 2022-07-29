@@ -16,7 +16,7 @@ const DisplayBookProject = () => {
   const { loading, error, data } = useQuery(GET_BOOK_PROJECT_ID, {
     variables: { id },
   });
-  console.log("DisplayBookProject:", { error, data, loading });
+  // console.log("DisplayBookProject:", { error, data, loading });
 
   const [deleteBookProject] = useMutation(DELETE_BOOK_PROJECT, {
     variables: { id },

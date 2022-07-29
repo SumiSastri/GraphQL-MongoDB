@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import "../.././App.css";
 import DisplayBookList from "./display/DisplayBookList";
-import AddBook from "./forms/AddBook";
 
 const BooksIndex = () => {
   return (
@@ -12,7 +11,6 @@ const BooksIndex = () => {
         Back to Home Page
       </Link>
       <DisplayBookList />
-      <AddBook />
     </div>
   );
 };
