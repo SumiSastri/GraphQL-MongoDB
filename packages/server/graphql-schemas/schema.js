@@ -199,18 +199,13 @@ const Mutation = new GraphQLObjectType({
         return bookClient.save();
       }
     },
-    // TODOdouble check front end mutation with backend mutation - bookProject
-    // # bookClient {
-    //   #   id
-    //   #   name
-    //   #   email
-    //   #   phone
-    //   # }
+   
     addBookProject: {
       type: BookProjectType,
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: new GraphQLNonNull(GraphQLString) },
+        bookClientId: { type: new GraphQLNonNull(GraphQLID) },
         status: {
           type: new GraphQLEnumType({
             name: 'ProjectStatus',
@@ -222,7 +217,6 @@ const Mutation = new GraphQLObjectType({
           }),
           defaultValue: 'Not Started',
         },
-        bookClientId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
         const bookProject = new BookProject({
@@ -244,7 +238,7 @@ const Mutation = new GraphQLObjectType({
       description: { type: GraphQLString },
       status: {
         type: new GraphQLEnumType({
-          // names must be unique - no spaces
+          // names must be unique - no spaces -note this enum is called ProjectStatus
           name: 'ProjectStatusUpdate',
           values: {
             new: { value: 'Not Started' },
