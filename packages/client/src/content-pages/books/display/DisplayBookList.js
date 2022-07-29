@@ -9,7 +9,7 @@ import DisplayBook from "./DisplayBook";
 
 const DisplayBookList = () => {
   const { error, loading, data } = useGetBooksQuery();
-  console.log("BookList:", { error, data, loading });
+  // console.log("BookList:", { error, data, loading });
   const [selected, setSelected] = useState(null);
   const displayBooks = (loading, data) => {
     if (error) {

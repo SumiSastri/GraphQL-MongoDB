@@ -1,4 +1,4 @@
-import {useQuery, gql} from '@apollo/client';
+import { useQuery, gql } from "@apollo/client";
 
 const GET_BOOK_PROJECT_ID = gql`
   query GetBookProjectId($id: ID!) {
@@ -18,15 +18,15 @@ const GET_BOOK_PROJECT_ID = gql`
 `;
 
 export const useGetBookProjectIdQuery = (id) => {
-    const { loading, error, data, refetch } = useQuery(GET_BOOK_PROJECT_ID,{
-        variables: {
-            id
-        }
-    });
-    return {
-        error,
-        data,
-        loading,
-        refetch,
-    };
+  const { loading, error, data, refetch } = useQuery(GET_BOOK_PROJECT_ID, {
+    variables: {
+      id,
+    },
+  });
+  return {
+    error,
+    data,
+    loading,
+    refetch,
+  };
 };

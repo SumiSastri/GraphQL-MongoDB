@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 
 // data
 import { GET_BOOK_PROJECTS } from "../../../utils/queries/queries";
+
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";

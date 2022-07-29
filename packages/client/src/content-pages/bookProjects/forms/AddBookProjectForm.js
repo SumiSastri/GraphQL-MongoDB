@@ -17,7 +17,10 @@ const AddBookProjectForm = () => {
   const [bookClientId, setBookClientId] = useState("");
 
   // load book clients
-  const { loading, error, data } = useQuery(GET_BOOK_CLIENTS, GET_BOOK_PROJECTS);
+  const { loading, error, data } = useQuery(
+    GET_BOOK_CLIENTS,
+    GET_BOOK_PROJECTS
+  );
   console.log(data, "GET BOOK CLIENTS data");
 
   // load book clients
@@ -35,7 +38,7 @@ const AddBookProjectForm = () => {
       });
     }
   }
-
+  // method using data in Apollo cache
   const [createBookProject] = useMutation(CREATE_BOOK_PROJECT, {
     variables: { name, description, bookClientId, status },
     update(cache, { data: { createBookProject } }) {
@@ -56,7 +59,6 @@ const AddBookProjectForm = () => {
   //   },
   // });
 
-
   const { refetch } = useGetBookProjectsQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,7 +67,7 @@ const AddBookProjectForm = () => {
       name,
       description,
       bookClientId,
-      status,
+      status
     );
 
     // validation
@@ -81,7 +83,7 @@ const AddBookProjectForm = () => {
     // new payload
     createBookProject(name, description, bookClientId, status);
     console.log(createBookProject, "BOOK Project PAYLOAD");
-  
+
     // reset after submission
     const resetFormFields = () => {
       setName("");
@@ -95,93 +97,92 @@ const AddBookProjectForm = () => {
   };
 
   return (
-
-        <>
-          <button
-            type='button'
-            className='btn btn-secondary'
-            data-bs-toggle='modal'
-            data-bs-target='#addProjectModal'
-          >
-            <div className='d-flex align-items-center'>
-            <FaList className='icon' />
+    <>
+      <button
+        type='button'
+        className='btn btn-secondary'
+        data-bs-toggle='modal'
+        data-bs-target='#addProjectModal'
+      >
+        <div className='d-flex align-items-center'>
+          <FaList className='icon' />
           <div>Add A Book Project</div>
         </div>
       </button>
 
-          <div
-            className='modal fade'
-            id='addProjectModal'
-            aria-labelledby='addProjectModalLabel'
-            aria-hidden='true'
-          >
-            <div className='modal-dialog'>
-              <div className='modal-content'>
-                <div className='modal-header'>
-                  <h5 className='modal-title' id='addProjectModalLabel'>
-                    New Book Project
-                  </h5>
-                  <button
-                    type='button'
-                    className='btn-close'
-                    data-bs-dismiss='modal'
-                    aria-label='Close'
-                  ></button>
+      <div
+        className='modal fade'
+        id='addProjectModal'
+        aria-labelledby='addProjectModalLabel'
+        aria-hidden='true'
+      >
+        <div className='modal-dialog'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title' id='addProjectModalLabel'>
+                New Book Project
+              </h5>
+              <button
+                type='button'
+                className='btn-close'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              ></button>
+            </div>
+            <div className='modal-body'>
+              <form onSubmit={handleSubmit}>
+                <div className='mb-3'>
+                  <label className='form-label'>Project Name</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='name'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
-                <div className='modal-body'>
-                  <form onSubmit={handleSubmit}>
-                    <div className='mb-3'>
-                      <label className='form-label'>Project Name</label>
-                      <input
-                        type='text'
-                        className='form-control'
-                        id='name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                      />
-                    </div>
-                    <div className='mb-3'>
-                      <label className='form-label'>Project Description</label>
-                      <textarea
-                        className='form-control'
-                        id='description'
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                      ></textarea>
-                    </div>
-                    <div className='mb-3'>
-                      <label className='form-label'>Project Status</label>
-                      <select
-                        id='status'
-                        className='form-select'
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value)}
-                      >
-                        <option value='new'>Not Started</option>
-                        <option value='progress'>In Progress</option>
-                        <option value='completed'>Completed</option>
-                      </select>
-                    </div>
+                <div className='mb-3'>
+                  <label className='form-label'>Project Description</label>
+                  <textarea
+                    className='form-control'
+                    id='description'
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  ></textarea>
+                </div>
+                <div className='mb-3'>
+                  <label className='form-label'>Project Status</label>
+                  <select
+                    id='status'
+                    className='form-select'
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value='new'>Not Started</option>
+                    <option value='progress'>In Progress</option>
+                    <option value='completed'>Completed</option>
+                  </select>
+                </div>
 
-                    <div className='mb-3'>
-                      <label className='form-label'>Author's Agent</label>
-                      <select
-                        id='clientId'
-                        className='form-select'
-                        value={bookClientId}
-                        onChange={(e) => setBookClientId(e.target.value)}
-                      >
-                        <option>Select Book Agent</option>
-                        {displayBookClients(loading, data)}
-                      </select>
-                    </div>
+                <div className='mb-3'>
+                  <label className='form-label'>Author's Agent</label>
+                  <select
+                    id='clientId'
+                    className='form-select'
+                    value={bookClientId}
+                    onChange={(e) => setBookClientId(e.target.value)}
+                  >
+                    <option>Select Book Agent</option>
+                    {displayBookClients(loading, data)}
+                  </select>
+                </div>
 
-                    <button
-                      type='submit'
-                      data-bs-dismiss='modal'
-                      className='btn btn-primary'
-                    >
-                      Submit
+                <button
+                  type='submit'
+                  data-bs-dismiss='modal'
+                  className='btn btn-primary'
+                >
+                  Submit
                 </button>
               </form>
             </div>

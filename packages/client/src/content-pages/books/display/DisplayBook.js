@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 // data
 import { GET_BOOK_ID, GET_BOOKS } from "../../../utils/queries/queries";
@@ -11,7 +11,6 @@ import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredCo
 
 const DisplayBook = ({ bookId }) => {
   const { error, loading, data } = useGetBookIdQuery(bookId);
-  // with refetch
   const [deleteBook] = useMutation(DELETE_BOOK, {
     variables: { id: bookId },
     refetchQueries: [{ query: GET_BOOK_ID }, { query: GET_BOOKS }],
@@ -43,10 +42,10 @@ const DisplayBook = ({ bookId }) => {
           <div className='other-books' key={item.id}>
             <ul id='book-details'>
               <li>{item.name}</li>
-              <button className='btn-secondary'>Update</button>
+              <button className='btn-secondary'>Update  <FaEdit /></button>
+             
               <button className='btn-primary' onClick={deleteBook}>
-                {" "}
-                <FaTrash />
+                Delete <FaTrash />
               </button>
             </ul>
           </div>
