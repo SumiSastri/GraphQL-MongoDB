@@ -3,32 +3,46 @@ import { FaList } from "react-icons/fa";
 import { useMutation, useQuery } from "@apollo/client";
 
 // data
-import {useGetBookProjectsQuery} from "../../../utils/hooks/useGetBookProjectsQuery"
-import { CREATE_BOOK_PROJECT } from "../../../utils/mutations/bookProjectMutations";
+import { useGetBookProjectsQuery } from "../../../utils/hooks/bookProjects/useGetBookProjectsQuery";
+import { CREATE_BOOK_PROJECT } from "../../../utils/mutations/book-project-mutations/createBookProjectMutation";
 import {
   GET_BOOK_CLIENTS,
-  // GET_BOOK_PROJECTS,
+  GET_BOOK_PROJECTS,
 } from "../../../utils/queries/queries";
-
 
 const AddBookProjectForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  // use the enum value
   const [status, setStatus] = useState("new");
-  
-  // load book clients
-  const { loading, error, data } = useQuery(GET_BOOK_CLIENTS);
-  console.log(data, "GET BOOK CLIENTS data");
   const [bookClientId, setBookClientId] = useState("");
 
-  // const [addBookProject] = useMutation(CREATE_BOOK_PROJECT, {
+  // load book clients
+  const { loading, error, data } = useQuery(GET_BOOK_CLIENTS, GET_BOOK_PROJECTS);
+  console.log(data, "GET BOOK CLIENTS data");
+
+  // load book clients
+  function displayBookClients(loading, data) {
+    if (error) return `Error! ${error.message}`;
+    if (loading) {
+      return <option disabled>Loading authors...</option>;
+    } else {
+      return data.bookClients.map((bookClient) => {
+        return (
+          <option key={bookClient.id} value={bookClient.id}>
+            {bookClient.name}
+          </option>
+        );
+      });
+    }
+  }
+
+  // const [createBookProject] = useMutation(CREATE_BOOK_PROJECT, {
   //   variables: { name, description, bookClientId, status },
-  //   update(cache, { data: { addBookProject } }) {
+  //   update(cache, { data: { createBookProject } }) {
   //     const { bookProjects } = cache.readQuery({ query: GET_BOOK_PROJECTS });
   //     cache.writeQuery({
   //       query: GET_BOOK_PROJECTS,
-  //       data: { bookProjects: [...bookProjects, addBookProject] },
+  //       data: { bookProjects: [...bookProjects, createBookProject] },
   //     });
   //   },
   // });
@@ -42,12 +56,19 @@ const AddBookProjectForm = () => {
     },
   });
 
+
   const { refetch } = useGetBookProjectsQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(name, description, bookClientId, status, "LOG SUBMIT ADD BOOK PROJECT FORM");
+    console.log(
+      "Log new book project:",
+      name,
+      description,
+      bookClientId,
+      status,
+    );
 
-    // simple validation
+    // validation
     if (
       name === "" ||
       description === "" ||
@@ -58,12 +79,9 @@ const AddBookProjectForm = () => {
     }
 
     // new payload
-    // addBookProject(name, description, bookClientId, status);
-    // console.log(name, description, bookClientId, status, "LOG Submit Payload for new project");
-
     createBookProject(name, description, bookClientId, status);
-    console.log(createBookProject, "Log BOOK PROJECT FORM payload");
-
+    console.log(createBookProject, "BOOK Project PAYLOAD");
+  
     // reset after submission
     const resetFormFields = () => {
       setName("");
@@ -72,15 +90,12 @@ const AddBookProjectForm = () => {
       setBookClientId("");
     };
     resetFormFields();
+    // call refetch
     refetch();
   };
 
-  if (loading) return null;
-  if (error) return "Something Went Wrong";
-
   return (
-    <>
-      {!loading && !error && (
+
         <>
           <button
             type='button'
@@ -89,10 +104,10 @@ const AddBookProjectForm = () => {
             data-bs-target='#addProjectModal'
           >
             <div className='d-flex align-items-center'>
-              <FaList className='icon' />
-              <div>Add New Book Project</div>
-            </div>
-          </button>
+            <FaList className='icon' />
+          <div>Add A Book Project</div>
+        </div>
+      </button>
 
           <div
             className='modal fade'
@@ -149,21 +164,15 @@ const AddBookProjectForm = () => {
                     </div>
 
                     <div className='mb-3'>
-                      <label className='form-label'>
-                        Client for the Project
-                      </label>
+                      <label className='form-label'>Author's Agent</label>
                       <select
                         id='clientId'
                         className='form-select'
                         value={bookClientId}
                         onChange={(e) => setBookClientId(e.target.value)}
                       >
-                        <option value=''>Select Book Client</option>
-                        {data.bookClients.map((bookClient) => (
-                          <option key={bookClient.id} value={bookClient.id}>
-                            {bookClient.name}
-                          </option>
-                        ))}
+                        <option>Select Book Agent</option>
+                        {displayBookClients(loading, data)}
                       </select>
                     </div>
 
@@ -173,14 +182,12 @@ const AddBookProjectForm = () => {
                       className='btn btn-primary'
                     >
                       Submit
-                    </button>
-                  </form>
-                </div>
-              </div>
+                </button>
+              </form>
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </>
   );
 };

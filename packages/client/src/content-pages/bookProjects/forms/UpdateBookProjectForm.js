@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@apollo/client";
 
 // data
 import { GET_BOOK_PROJECT_ID} from "../../../utils/queries/queries";
-import { UPDATE_BOOK_PROJECT } from "../../../utils/mutations/bookProjectMutations";
+import { UPDATE_BOOK_PROJECT } from "../../../utils/mutations/book-project-mutations/bookProjectMutations";
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";

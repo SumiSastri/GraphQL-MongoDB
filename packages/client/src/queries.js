@@ -10,18 +10,8 @@ const GET_AUTHORS = gql`
     }
 `;
 
-// create is a mutation
-const CREATE_BOOK = gql`
-mutation {
-    addBook(name: "", genre: "", authorId: ""){
-        name
-        id
-    }
-}
-`;
-
 // function to get the data
-const getBooksQuery = gql`
+const GET_BOOKS = gql`
     {
         books {
             name
@@ -30,4 +20,4 @@ const getBooksQuery = gql`
     }
 `;
 
-export { GET_AUTHORS, getBooksQuery, CREATE_BOOK }
+export { GET_AUTHORS, GET_BOOKS }

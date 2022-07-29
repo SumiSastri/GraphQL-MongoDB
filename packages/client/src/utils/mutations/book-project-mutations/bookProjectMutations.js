@@ -1,32 +1,18 @@
 import { gql } from '@apollo/client';
 
 
+
 const CREATE_BOOK_PROJECT = gql`
-  mutation AddBookProject(
-    $name: String!
-    $description: String!
-    $status: ProjectStatus!
-    $bookClientId: ID!
-  ) {
-    addBookProject(
-      name: $name
-      description: $description
-      status: $status
-      bookClientId: $bookClientId
-    ) {
-      id
-      name
-      description
-      status
-      bookClient {
-        id
+mutation AddBookProject($name: String!, $description:String!, $status: ProjectStatus!, $bookClientId:ID!) {
+    addBookProject(name: $name, description: $description, status: $status, bookClientId:$bookClientId){
         name
-        email
-        phone
-      }
+        description
+        status
+        bookClientId
     }
-  }
+}
 `;
+
 
 const DELETE_BOOK_PROJECT = gql`
   mutation DeleteBookProject($id: ID!) {
@@ -41,13 +27,13 @@ const UPDATE_BOOK_PROJECT = gql`
     $id: ID!
     $name: String!
     $description: String!
-    $status: ProjectStatusUpdate!
+    $status: StatusUpdate!
   ) {
     updateBookProject(
       id: $id
       name: $name
       description: $description
-      status: $status
+      $status: ProjectStatusUpdate!
     ) {
       id
       name

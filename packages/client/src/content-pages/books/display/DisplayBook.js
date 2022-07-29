@@ -2,9 +2,9 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { useMutation } from "@apollo/client";
 // data
-import { useGetBookIdQuery } from "../../../utils/hooks/useGetBookIdQuery";
 import { GET_BOOK_ID, GET_BOOKS } from "../../../utils/queries/queries";
-import { DELETE_BOOK } from "../../../utils/mutations/deleteBookMutation";
+import { DELETE_BOOK } from "../../../utils/mutations/book-mutations/deleteBook";
+import { useGetBookIdQuery } from "../../../utils/hooks/book/useGetBookIdQuery";
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";

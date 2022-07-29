@@ -4,7 +4,7 @@ import {useMutation} from '@apollo/client';
 // data
 import { useGetBookIdQuery } from "../../../utils/hooks/useGetBookIdQuery";
 import { useGetBooksQuery } from '../../../utils/hooks/useGetBooksQuery';
-import {CREATE_BOOK} from "../../../utils/mutations/createBookMutation";
+import {CREATE_BOOK} from "../../../utils/mutations/book-mutations/createBook";
 
 // components
 import ErrorHasOccurredComponent from "../../../common//errors/ErrorHasOccurredComponent";

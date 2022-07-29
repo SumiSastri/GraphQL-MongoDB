@@ -10,5 +10,3 @@ mutation deleteBook($id: ID!) {
 `;
 
 export {DELETE_BOOK}
-
-

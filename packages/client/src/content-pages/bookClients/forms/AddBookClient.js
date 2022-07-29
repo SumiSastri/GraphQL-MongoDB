@@ -32,7 +32,8 @@ const AddBookClient = () => {
     // new payload
     createBookClient(name, phone, email);
     console.log(createBookClient, "BOOK CLIENT PAYLOAD");
-
+    
+    // reset form fields on submit
     const resetFormFields = () => {
       setName("");
       setEmail("");

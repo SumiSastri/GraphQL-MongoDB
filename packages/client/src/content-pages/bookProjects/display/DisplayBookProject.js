@@ -1,15 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
-import { useQuery} from '@apollo/client';
+import { useQuery, useMutation} from '@apollo/client';
+import { FaTrash } from 'react-icons/fa';
+
 // data
 import { GET_BOOK_PROJECT_ID } from "../../../utils/queries/queries";
-// import { DELETE_BOOK_PROJECT } from '../../../utils/mutations/bookProjectMutations';
+import { DELETE_BOOK_PROJECT } from "../../../utils/mutations/book-project-mutations/deleteBookProjectMutation";
+import { GET_BOOK_PROJECTS } from '../../../utils/queries/queries';
+
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
-import DeleteProjectButton from "./DeleteBookProject";
 // import UpdateBookProjectForm from '../forms/UpdateBookProjectForm';
-// import ClientInfo from "../../bookClients/display/BookClientInfo"
-// import {useGetBookProjectIdQuery} from "../../../utils/hooks/useGetBookProjectIdQuery"
 
 const DisplayBookProject = () => {
     // with hooks and refetch
@@ -24,6 +25,11 @@ const DisplayBookProject = () => {
     variables: { id },
   });
     console.log("DisplayBookProject:", { error, data, loading });
+
+    const [deleteBookProject] = useMutation(DELETE_BOOK_PROJECT, {
+      variables: { id },
+      refetchQueries: [{ query: GET_BOOK_PROJECTS }],
+    });
 
   if (loading) return <Loading />;
   if (error) return <ErrorHasOccurredComponent />;
@@ -42,12 +48,14 @@ const DisplayBookProject = () => {
           <p>{data.bookProject.description}</p>
           <h5 className='mt-3'>Project Status</h5>
           <p className='lead'>{data.bookProject.status}</p>
-          {/* <div className='d-flex mt-5 ms-auto'>
+         <div className='d-flex mt-5 ms-auto'>
       <button className='btn btn-danger m-2' onClick={deleteBookProject}>
-        <FaTrash className='icon' /> Delete this Book Project
+        <FaTrash className='icon' /> Delete Project
       </button>
-    </div> */}
-           <DeleteProjectButton/>
+      <button className='btn Fsecondary' onClick={deleteBookProject}>
+        <FaTrash className='icon' /> Update Project
+      </button>
+    </div>
            {/* <UpdateBookProjectForm/> */}
           {/* <ClientInfo bookClient={data.bookProject.bookClient} /> */}
 

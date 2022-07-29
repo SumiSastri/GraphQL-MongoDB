@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // data
-import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
+import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";

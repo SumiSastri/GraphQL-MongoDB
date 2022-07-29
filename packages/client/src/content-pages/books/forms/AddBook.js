@@ -3,8 +3,8 @@ import { useQuery, useMutation } from "@apollo/client";
 // styling
 import "../../../App.css";
 // data
-import { useGetBooksQuery } from "../../../utils/hooks/useGetBooksQuery";
-import { CREATE_BOOK } from "../../../utils/mutations/bookMutations";
+import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
+import { CREATE_BOOK } from "../../../utils/mutations/book-mutations/createBook";
 import { GET_AUTHORS } from "../../../utils/queries/queries";
 
 const AddBook = () => {
