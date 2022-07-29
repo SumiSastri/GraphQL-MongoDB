@@ -36,25 +36,25 @@ const AddBookProjectForm = () => {
     }
   }
 
-  // const [createBookProject] = useMutation(CREATE_BOOK_PROJECT, {
-  //   variables: { name, description, bookClientId, status },
-  //   update(cache, { data: { createBookProject } }) {
-  //     const { bookProjects } = cache.readQuery({ query: GET_BOOK_PROJECTS });
-  //     cache.writeQuery({
-  //       query: GET_BOOK_PROJECTS,
-  //       data: { bookProjects: [...bookProjects, createBookProject] },
-  //     });
-  //   },
-  // });
-
   const [createBookProject] = useMutation(CREATE_BOOK_PROJECT, {
-    variables: {
-      name,
-      description,
-      bookClientId,
-      status,
+    variables: { name, description, bookClientId, status },
+    update(cache, { data: { createBookProject } }) {
+      const { bookProjects } = cache.readQuery({ query: GET_BOOK_PROJECTS });
+      cache.writeQuery({
+        query: GET_BOOK_PROJECTS,
+        data: { bookProjects: [...bookProjects, createBookProject] },
+      });
     },
   });
+
+  // const [createBookProject] = useMutation(CREATE_BOOK_PROJECT, {
+  //   variables: {
+  //     name,
+  //     description,
+  //     bookClientId,
+  //     status,
+  //   },
+  // });
 
 
   const { refetch } = useGetBookProjectsQuery();
