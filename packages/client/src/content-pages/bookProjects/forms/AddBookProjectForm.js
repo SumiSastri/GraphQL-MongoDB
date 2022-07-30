@@ -21,9 +21,9 @@ const AddBookProjectForm = () => {
     GET_BOOK_CLIENTS,
     GET_BOOK_PROJECTS
   );
-  console.log(data, "GET BOOK CLIENTS data");
+  // console.log(data, "GET BOOK CLIENTS data");
 
-  // load book clients
+  // load book clients and display with custom function
   function displayBookClients(loading, data) {
     if (error) return `Error! ${error.message}`;
     if (loading) {
@@ -38,7 +38,7 @@ const AddBookProjectForm = () => {
       });
     }
   }
-  // method using data in Apollo cache
+  // use mutation method using data in Apollo cache
   const [createBookProject] = useMutation(CREATE_BOOK_PROJECT, {
     variables: { name, description, bookClientId, status },
     update(cache, { data: { createBookProject } }) {

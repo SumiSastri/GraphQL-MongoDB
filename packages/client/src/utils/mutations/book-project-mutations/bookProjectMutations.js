@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
 
-
-
+// schema for status is an enum of a specific type (see backend to match)
 const CREATE_BOOK_PROJECT = gql`
 mutation AddBookProject($name: String!, $description:String!, $status: ProjectStatus!, $bookClientId:ID!) {
     addBookProject(name: $name, description: $description, status: $status, bookClientId:$bookClientId){
@@ -12,7 +11,6 @@ mutation AddBookProject($name: String!, $description:String!, $status: ProjectSt
     }
 }
 `;
-
 
 const DELETE_BOOK_PROJECT = gql`
   mutation DeleteBookProject($id: ID!) {

@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 
 // styling
 import "../../../App.css";
-// data
+// STEP 1 set up front-end query data required - check types against back end schema
 import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
-import { CREATE_BOOK } from "../../../utils/mutations/book-mutations/createBook";
+// This query is to load authors and does not use a hook
 import { GET_AUTHORS } from "../../../utils/queries/queries";
+// STEP 2 mutate front-end data - check against back end eg - string template can be called
+
+// CREATE_BOOK but the actual mutuation the same name as back end addBook()
+import { CREATE_BOOK } from "../../../utils/mutations/book-mutations/createBook";
 
 const AddBook = () => {
   const [name, setName] = useState("");
@@ -17,7 +21,7 @@ const AddBook = () => {
   // load authors
   const { loading, error, data } = useQuery(GET_AUTHORS);
   console.log("Load Authors", { error, data, loading });
-  // load authors
+  // load authors and custom function for the select filter
   function displayAuthors(loading, data) {
     if (error) return `Error! ${error.message}`;
     if (loading) {
@@ -32,7 +36,7 @@ const AddBook = () => {
       });
     }
   }
-
+// STEP 3: use the mutation to create a custom function for the submit payload
   const [createBook] = useMutation(CREATE_BOOK, {
     variables: {
       name,
@@ -41,6 +45,7 @@ const AddBook = () => {
     },
   });
 
+  // refetch data
   const { refetch } = useGetBooksQuery();
   const handleSubmit = (e) => {
     e.preventDefault();

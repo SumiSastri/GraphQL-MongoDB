@@ -8,7 +8,7 @@ const GET_BOOKS = gql`
     }
   }
 `;
-
+// query + hook to fetch data and refetch for Apollo cache
 export const useGetBooksQuery = () => {
   const { loading, error, data, refetch } = useQuery(GET_BOOKS);
   return {

@@ -42,7 +42,7 @@ const DisplayBookProject = () => {
           <p className='lead'>{data.bookProject.status}</p>
           <div className='d-flex mt-5 ms-auto'>
             <button className='btn-secondary'>
-              <FaEdit className='icon' /> Update Project
+              <FaEdit className='icon'/> Update Project
             </button>
             <button
               className='btn-primary btn-danger'

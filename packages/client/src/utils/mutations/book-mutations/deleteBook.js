@@ -1,7 +1,7 @@
 import {gql} from '@apollo/client';
 
 const DELETE_BOOK = gql`
-mutation deleteBook($id: ID!) {
+mutation DeleteBook($id: ID!) {
     deleteBook(id: $id) {
       name
       id

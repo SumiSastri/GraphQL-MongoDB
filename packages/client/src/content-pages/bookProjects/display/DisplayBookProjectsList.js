@@ -8,7 +8,7 @@ import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 import BookProjectCard from "./BookProjectCard";
 
-const DisplayBookProjectsList = ({ bookProject }) => {
+const DisplayBookProjectsList = () => {
   const { loading, error, data } = useQuery(GET_BOOK_PROJECTS);
   if (error) return <ErrorHasOccurredComponent />;
   if (loading) return <Loading />;
