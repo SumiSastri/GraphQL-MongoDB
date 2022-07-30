@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-
 // styling
 import "../../../App.css";
 // STEP 1 set up front-end query data required - check types against back end schema
 import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
-// This query is to load authors and does not use a hook
-import { GET_AUTHORS } from "../../../utils/queries/queries";
 // STEP 2 mutate front-end data - check against back end eg - string template can be called
-
 // CREATE_BOOK but the actual mutuation the same name as back end addBook()
 import { CREATE_BOOK } from "../../../utils/mutations/book-mutations/createBook";
+
+// This query is to load authors and does not use a hook
+import { GET_AUTHORS } from "../../../utils/queries/queries";
+
+// components
+import Loading from "../../../common/loading/Loading";
+import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 
 const AddBook = () => {
   const [name, setName] = useState("");
@@ -45,8 +48,8 @@ const AddBook = () => {
     },
   });
 
-  // refetch data
-  const { refetch } = useGetBooksQuery();
+  // refetch data - call it within the submit function if page routed to custom form page
+  const {refetch } = useGetBooksQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("Log submit new book:", name, genre, authorId);
@@ -60,9 +63,23 @@ const AddBook = () => {
       setAuthorId("");
     };
     resetFormFields();
-    refetch()
   };
+  
 
+  if (error)
+  return (
+    <div>
+      <ErrorHasOccurredComponent />
+    </div>
+  );
+if (loading)
+  return (
+    <div>
+      <Loading />
+    </div>
+  );
+  refetch();
+  
   return (
     <form id='add-book' onSubmit={handleSubmit}>
           <h4>Add a new book</h4>

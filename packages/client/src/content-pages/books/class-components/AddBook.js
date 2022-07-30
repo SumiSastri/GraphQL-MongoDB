@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-
 import FormInput from "../../../common/forms/FormInput"
-// import {getAuthorsQuery, CREATE_BOOK} from "../../../../utils/queries"
 export default class AddBook extends Component { 
     constructor(props){
         super(props);
@@ -26,8 +24,6 @@ export default class AddBook extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        // send data to backend via the graphql mutation call 
-        // no values will be sent until bound to component
         console.log(this.state);
 // send to db with a mutation
     //     this.props.addBookMutation({

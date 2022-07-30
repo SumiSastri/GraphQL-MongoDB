@@ -5,6 +5,9 @@ import { useMutation } from "@apollo/client";
 // data
 import { useGetBookClientsQuery } from "../../../utils/hooks/useGetBookClientsQuery";
 import { CREATE_BOOK_CLIENT } from "../../../utils/mutations/bookClientMutations";
+// components
+import Loading from "../../../common/loading/Loading";
+import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
 
 const AddBookClient = () => {
   const [name, setName] = useState("");
@@ -19,7 +22,7 @@ const AddBookClient = () => {
     },
   });
 
-  const { refetch } = useGetBookClientsQuery();
+  const { loading, error, refetch } = useGetBookClientsQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log("Log new book-client:", name, phone, email);
@@ -40,10 +43,22 @@ const AddBookClient = () => {
       setPhone("");
     };
     resetFormFields();
-    // call refetch
-    refetch();
   };
-
+    // call refetch after the submit if form on same page
+    refetch();
+    
+  if (error)
+  return (
+    <div>
+      <ErrorHasOccurredComponent />
+    </div>
+  );
+if (loading)
+  return (
+    <div>
+      <Loading />
+    </div>
+  );
   // using bootstrap modal
   return (
     <>

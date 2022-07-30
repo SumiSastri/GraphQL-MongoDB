@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaList, FaUser } from "react-icons/fa";
-// data
+// queries
 import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
 import { GET_BOOKS } from "../../../utils/queries/queries";
 // components
