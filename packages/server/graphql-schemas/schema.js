@@ -1,48 +1,59 @@
-const graphql = require('graphql');
-const _ = require('lodash');
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLInt, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLEnumType } = graphql;
+const graphql = require("graphql");
+const _ = require("lodash");
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLInt,
+  GraphQLID,
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLEnumType,
+} = graphql;
 
-const Book = require ("../mongoose-models/bookSchema")
-const Author = require ("../mongoose-models/authorSchema")
-const BookProject = require('../mongoose-models/bookProjectSchema');
-const BookClient = require('../mongoose-models/bookClientSchema');
+const Book = require("../mongoose-models/bookSchema");
+const Author = require("../mongoose-models/authorSchema");
+const BookProject = require("../mongoose-models/bookProjectSchema");
+const BookClient = require("../mongoose-models/bookClientSchema");
 
 //STEP 1: DEFINE server-side graphQL types
 // mongoose methods find() and findById()
 const BookType = new GraphQLObjectType({
-    name: 'Book',
-    // void function to call the fields due to call-stack
-    // returns the graphQL strongly typed object no related data
-    fields: () => ({
-        id: { type: graphql.GraphQLID },
-        name: { type: GraphQLString },
-        genre: { type: GraphQLString },
-        // related nested query to book joined by a constructor
-        author: {
-            type: AuthorType,
-            resolve(parent, args) {
-                return Author.findById(parent.authorId);
-            }
-        }
-    })
+  name: "Book",
+  // void function to call the fields due to call-stack
+  // returns the graphQL strongly typed object no related data
+  fields: () => ({
+    id: { type: graphql.GraphQLID },
+    name: { type: GraphQLString },
+    genre: { type: GraphQLString },
+    // related nested query to book joined by a constructor
+    author: {
+      type: AuthorType,
+      resolve(parent, args) {
+        return Author.findById(parent.authorId);
+      },
+    },
+  }),
 });
 
 const AuthorType = new GraphQLObjectType({
-    name: 'Author',
-    fields: () => ({
-        id: { type: graphql.GraphQLID },
-        name: { type: GraphQLString },
-        century: { type: GraphQLInt },    
-        // Link author to a list of books with a constructor
-        books: {
-            type: new GraphQLList(BookType),
-            resolve(parent, args) {
-                return Book.find({ authorId: parent.id });
-            }
-        }
-    })
+  name: "Author",
+  fields: () => ({
+    id: { type: graphql.GraphQLID },
+    name: { type: GraphQLString },
+    century: { type: GraphQLInt },
+    // Link author to a list of books with a constructor
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return Book.find({ authorId: parent.id });
+      },
+    },
+  }),
 });
 
+// this is initialised first before book Project 
+// the nested data in BookProjectType requires this
 const BookClientType = new GraphQLObjectType({
   name: "BookClient",
   fields: () => ({
@@ -52,7 +63,6 @@ const BookClientType = new GraphQLObjectType({
     phone: { type: GraphQLString },
   }),
 });
-
 
 const BookProjectType = new GraphQLObjectType({
   name: "BookProject",
@@ -71,117 +81,116 @@ const BookProjectType = new GraphQLObjectType({
   },
 });
 
+
+
 // STEP 2: QUERY DATA by ID and LISTS
 // mongoose methods findById() find({}) - empty object returns list
 const RootQuery = new GraphQLObjectType({
-   // GET BY ID
-    name: 'RootQueryType',
-    fields: {
-  
-        book: {
-            type: BookType,
-            args: { id: { type: GraphQLString } },
-            resolve(parent, args) {
-                return Book.findById(args.id);
-            }
-        },
-        
-        author: {
-            type: AuthorType,
-            args: { id: { type: GraphQLID } },
-            resolve(parent, args) {
-                return Author.findById(args.id);
-            }
-        },
-
-        bookClient: {
-          type: BookClientType,
-          args: { id: { type: GraphQLID } },
-          resolve(parent, args) {
-            return BookClient.findById(args.id);
-          }
-      },
-
-      bookProject: {
-        type: BookProjectType,
-        args: { id: { type: GraphQLID } },
-        resolve(parent, args) {
-          return BookProject.findById(args.id);
-        }
-    },
-          // QUERY DATA AND GET ALL DATA IN A LIST
-        books: {
-            type: new GraphQLList(BookType),
-            resolve(parent, args) {
-                return Book.find({});
-            }
-        },
-
-        authors: {
-            type: new GraphQLList(AuthorType),
-            resolve(parent, args) {
-                return Author.find({});
-            }
-        },
-    
-    bookClients: {
-      type: new GraphQLList(BookClientType),
+  // GET BY ID
+  name: "RootQueryType",
+  fields: {
+    book: {
+      type: BookType,
+      args: { id: { type: GraphQLString } },
       resolve(parent, args) {
-        return BookClient.find({});
-      }
+        return Book.findById(args.id);
+      },
     },
-  
+
+    author: {
+      type: AuthorType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Author.findById(args.id);
+      },
+    },
+
+    bookProject: {
+      type: BookProjectType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return BookProject.findById(args.id);
+      },
+    },
+
+    bookClient: {
+      type: BookClientType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return BookClient.findById(args.id);
+      },
+    },
+    // QUERY DATA AND GET ALL DATA IN A LIST
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return Book.find({});
+      },
+    },
+
+    authors: {
+      type: new GraphQLList(AuthorType),
+      resolve(parent, args) {
+        return Author.find({});
+      },
+    },
+
     bookProjects: {
       type: new GraphQLList(BookProjectType),
       resolve(parent, args) {
         return BookProject.find({});
-      }
+      },
     },
-  
-  }  
+
+    bookClients: {
+      type: new GraphQLList(BookClientType),
+      resolve(parent, args) {
+        return BookClient.find({});
+      },
+    },
+  },
 });
 
 // STEP 3 - mutate data that you have fetched
 // Mutations are the equivalent of the CRUD actions - create(add), update delete
 // save() findByIdAndUpdate() findByIdAndRemove() - mongoose methods
 const Mutation = new GraphQLObjectType({
-    name: "Mutation",
-    fields: {
-// CREATE - ADD A NEW RESOURCE TO DATABASE
-        addAuthor: {
-            type: AuthorType,
-            // ensure the types are typed correctly 
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                century: { type: new GraphQLNonNull(GraphQLInt) },
-            },
-            resolve(parent, args) {
-                // this constructor comes from the mongoose Schema
-                let author = new Author({
-                    name: args.name,
-                    century: args.century
-                });
-                return author.save()
-            }
-        },
-   
-        addBook: {
-            type: BookType,
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                genre: { type: new GraphQLNonNull(GraphQLString) },
-                authorId: { type: new GraphQLNonNull(GraphQLID) }
-            },
-            resolve(parent, args){
-                let book = new Book({
-                    name: args.name,
-                    genre: args.genre,
-                    authorId: args.authorId
-                });
-                return book.save();
-            }
-        },
-    
+  name: "Mutation",
+  fields: {
+    // 1. CREATE - ADD A NEW RESOURCE TO DATABASE
+    addAuthor: {
+      type: AuthorType,
+      // ensure the types are typed correctly
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        century: { type: new GraphQLNonNull(GraphQLInt) },
+      },
+      resolve(parent, args) {
+        // this constructor comes from the mongoose Schema
+        let author = new Author({
+          name: args.name,
+          century: args.century,
+        });
+        return author.save();
+      },
+    },
+
+    addBook: {
+      type: BookType,
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        let book = new Book({
+          name: args.name,
+          genre: args.genre,
+          authorId: args.authorId,
+        });
+        return book.save();
+      },
+    },
 
     addBookClient: {
       type: BookClientType,
@@ -197,9 +206,9 @@ const Mutation = new GraphQLObjectType({
           phone: args.phone,
         });
         return bookClient.save();
-      }
+      },
     },
-   
+
     addBookProject: {
       type: BookProjectType,
       args: {
@@ -208,14 +217,14 @@ const Mutation = new GraphQLObjectType({
         bookClientId: { type: new GraphQLNonNull(GraphQLID) },
         status: {
           type: new GraphQLEnumType({
-            name: 'ProjectStatus',
+            name: "ProjectStatus",
             values: {
-              new: { value: 'Not Started' },
-              progress: { value: 'In Progress' },
-              completed: { value: 'Completed' },
+              new: { value: "Not Started" },
+              progress: { value: "In Progress" },
+              completed: { value: "Completed" },
             },
           }),
-          defaultValue: 'Not Started',
+          defaultValue: "Not Started",
         },
       },
       resolve(parent, args) {
@@ -226,44 +235,10 @@ const Mutation = new GraphQLObjectType({
           bookClientId: args.bookClientId,
         });
         return bookProject.save();
-      }
-    },
-
-  // UPDATE
-  updateBookProject: {
-    type: BookProjectType,
-    args: {
-      id: { type: new GraphQLNonNull(GraphQLID) },
-      name: { type: GraphQLString },
-      description: { type: GraphQLString },
-      status: {
-        type: new GraphQLEnumType({
-          // names must be unique - no spaces -note this enum is called ProjectStatus
-          name: 'ProjectStatusUpdate',
-          values: {
-            new: { value: 'Not Started' },
-            progress: { value: 'In Progress' },
-            completed: { value: 'Completed' },
-          },
-        }),
       },
     },
-    resolve(parent, args) {
-      return BookProject.findByIdAndUpdate(
-        args.id,
-        {
-          $set: {
-            name: args.name,
-            description: args.description,
-            status: args.status,
-          },
-        },
-        { new: true }
-      );
-    }
-  },
-  
-    // DELETE DESTRUCTIVE - PERMANENT
+
+    // 2. DELETE DESTRUCTIVE/PERMANENT - WORK WITH ID findByIdAndRemove() - mongoose method
     deleteBook: {
       type: BookType,
       args: {
@@ -271,20 +246,32 @@ const Mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Book.findByIdAndRemove(args.id);
-      }
+      },
     },
 
-       deleteAuthor: {
-        type: AuthorType,
-        args: {
-          id: { type: graphql.GraphQLID },
-        },
-        resolve(parent, args) {
-          return Author.findByIdAndRemove(args.id);
-        }
+    deleteAuthor: {
+      type: AuthorType,
+      args: {
+        id: { type: graphql.GraphQLID },
       },
+      resolve(parent, args) {
+        return Author.findByIdAndRemove(args.id);
+      },
+    },
 
-      // For each if you want to delete all projects associated with a client Id??
+    deleteBookProject: {
+      type: BookProjectType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return BookProject.findByIdAndRemove(args.id);
+      },
+    },
+
+// NOTE:
+    // Use forEach() method if you want to delete all projects associated with a bookClientId
+    // this deletes all the book projects associated with the clientId -> destructive
     deleteBookClient: {
       type: BookClientType,
       args: {
@@ -298,23 +285,70 @@ const Mutation = new GraphQLObjectType({
         //   });
         // });
         return BookClient.findByIdAndRemove(args.id);
-      }
+      },
     },
-    
-    deleteBookProject: {
+
+    // 3. UPDATE create this schema last - trickiest to match front end as well
+    // it is create using an ID using findByIdAndUpdate() mongoose method
+    updateBook: {
+      type: BookType,
+  //  non-null these are required fields
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, args) {
+        return Book.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              genre: args.genre,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+
+    updateBookProject: {
       type: BookProjectType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        status: {
+          type: new GraphQLEnumType({
+            // names must be unique - no spaces -note this enum is called ProjectStatus
+            name: "ProjectStatusUpdate",
+            values: {
+              new: { value: "Not Started" },
+              progress: { value: "In Progress" },
+              completed: { value: "Completed" },
+            },
+          }),
+        },
       },
       resolve(parent, args) {
-        return BookProject.findByIdAndRemove(args.id);
-      }
+        return BookProject.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              description: args.description,
+              status: args.status,
+            },
+          },
+          { new: true }
+        );
+      },
     },
 
-  }
+  },
 });
 
 module.exports = new GraphQLSchema({
-    query: RootQuery,
-    mutation: Mutation
+  query: RootQuery,
+  mutation: Mutation,
 });
