@@ -1,3 +1,5 @@
+Apollo is a node.js implementation of the GraphQL rules (protocol).
+
 The Apollo Client handles front-end HTTP requests and resolves key issues in the hand-over of data from the front-end to the back end.
 
 A cache for example, the in-memory cache, stores the data temporily in the Apollo client cache and displays the received data from the HTTP request without a delay.

@@ -15,7 +15,9 @@ const schema = require('./graphql-schemas/schema');
 // middleware
 const app = express();
 app.use(cors());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 // use the grapqlHTTP library methods
 app.use('/graphql', graphqlHTTP({
   schema,
