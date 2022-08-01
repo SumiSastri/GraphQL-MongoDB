@@ -39,12 +39,10 @@ const DisplayBook = ({ bookId, }) => {
   return (
     <div>
       <h2>{data.book.name}</h2>
-      <h5>Genre</h5>
-      <p>{data.book.genre}</p>
+      <h3>Author: {data.book.author.name}</h3>
+      <h4>Genre: {data.book.genre} </h4>
       <UpdateBook bookId={data.book.id} />   
-      <h5>Author</h5>
-      <p>{data.book.author.name}</p>
-      <h6>More by the same author</h6>
+      <h5>{data.book.author.name}: More books in this catalog </h5>
       {data.book.author.books.map((item) => {
         return (
           <div className='other-books' key={item.id}>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-
+import { FaUser } from "react-icons/fa";
 // STEP 1 set up front-end query data by ID for single resource
 import { GET_BOOK_ID } from "../../../utils/queries/queries";
 import { useGetBookIdQuery } from "../../../utils/hooks/book/useGetBookIdQuery";
@@ -69,31 +69,72 @@ const UpdateBook = ({ bookId }) => {
     );
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='field'>
-        <hr />
-        <h4>Update book details</h4>
-        <label>Book name:</label>
-        <input
+    <>
+    <button
+      type='button'
+      className='btn btn-secondary'
+      data-bs-toggle='modal'
+      data-bs-target='#addClientModal'
+    >
+      <div className='d-flex align-items-center'>
+        <FaUser className='icon' />
+        Update book details
+      </div>
+    </button>
+
+    <div
+      className='modal fade'
+      id='addClientModal'
+      aria-labelledby='addClientModalLabel'
+      aria-hidden='true'
+    >
+      <div className='modal-dialog'>
+        <div className='modal-content'>
+          <div className='modal-header'>
+            <h5 className='modal-title' id='addClientModalLabel'>
+              Update Book Details
+            </h5>
+            <button
+              type='button'
+              className='btn-close'
+              data-bs-dismiss='modal'
+              aria-label='Close'
+            ></button>
+          </div>
+          <div className='modal-body'>
+            <form onSubmit={handleSubmit}>
+              <div className='mb-3'>
+                <label className='form-label'>Name</label>
+                <input
           className='form-control'
           type='text'
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-      </div>
-      <div className='field'>
-        <label>Genre:</label>
-        <input
+              </div>
+              <div className='mb-3'>
+                <label className='form-label'>Email</label>
+                <input
           className='form-control'
           type='text'
           value={genre}
           onChange={(e) => setGenre(e.target.value)}
         />
+              </div>
+              <button
+                type='submit'
+                data-bs-dismiss='modal'
+                className='btn btn-secondary'
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-      <h4>Update this book</h4>
-      <button>+</button>
-    </form>
-  );
+    </div>
+  </>
+);
 };
-
+    
 export default UpdateBook;

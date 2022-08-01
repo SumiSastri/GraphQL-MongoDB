@@ -10,6 +10,7 @@ import { GET_BOOK_PROJECTS } from "../../../utils/queries/queries";
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
+// import BookClientInfo from "../../bookClients/display/BookClientInfo"
 
 const DisplayBookProject = () => {
   const { id } = useParams();
@@ -41,6 +42,8 @@ const DisplayBookProject = () => {
           <h5 className='mt-3'>Project Status</h5>
           <p className='lead'>{data.bookProject.status}</p>
           <div className='d-flex mt-5 ms-auto'>
+
+          {/* <BookClientInfo bookClient={data.bookProject.bookClient} /> */}
             <button className='btn-secondary'>
               <FaEdit className='icon'/> Update Project
             </button>
