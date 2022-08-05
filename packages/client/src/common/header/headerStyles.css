@@ -1,0 +1,8 @@
+.header-styles {
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+

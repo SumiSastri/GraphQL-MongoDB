@@ -9,6 +9,8 @@ import { DELETE_BOOK } from "../../../utils/mutations/book-mutations/deleteBook"
 // components
 import Loading from "../../../common/loading/Loading";
 import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredComponent";
+// import DisplayBookImage from "../../../common/displayImages/DisplayBookImage"
+// forms
 import UpdateBook from "../forms/UpdateBook";
 
 const DisplayBook = ({ bookId, }) => {
@@ -41,8 +43,11 @@ const DisplayBook = ({ bookId, }) => {
       <h2>{data.book.name}</h2>
       <h3>Author: {data.book.author.name}</h3>
       <h4>Genre: {data.book.genre} </h4>
-      <UpdateBook bookId={data.book.id} />   
-      <h5>{data.book.author.name}: More books in this catalog </h5>
+      <UpdateBook bookId={data.book.id} />
+      {/* <DisplayBookImage 
+      >
+       <p>{data.book.author.name}: More books in this catalog</p>
+        </DisplayBookImage>  */}
       {data.book.author.books.map((item) => {
         return (
           <div className='other-books' key={item.id}>
