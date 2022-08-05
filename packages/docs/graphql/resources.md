@@ -2,6 +2,11 @@
 
 Net Ninja Tutorial (Note this tutorial is dated - the Apollo server section does not include Apollo-3. The React section still depends on class-components rather than hooks)
 
+GraphQL integrates easily with React [https://app.pluralsight.com/guides/how-to-set-up-graphql-in-a-react-app]
+
+NetNinja [https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f]
+https://www.youtube.com/watch?v=NbKJFRgsw-A
+
 Series Link [https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f]
 
 Some useful individual modules:
@@ -20,3 +25,6 @@ MongoDB-Mongoose set up[]
 
 Mutations: [https://www.youtube.com/watch?v=DU77lbBPfBI&list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f&index=18]
 
+
+Traversy Media:
+[https://www.youtube.com/watch?v=BcLNfwF04Kw]

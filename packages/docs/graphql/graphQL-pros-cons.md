@@ -10,9 +10,6 @@
   -- Database to GraphQL server - Prisma (supports RDBMS and noSQL dbs) replaces ORMs - subscriptions
   -- GraphQL Voyager - schema representation with entity mapping
   -- GraphQL Faker - mock data
-
-
-
  - increase the multi-team productivity BE-FE teams can work in parallel, which enhances the multi-team productivity. Increased productivity among developers lead to a speed-up in the product development. With GraphQL, it is possible to completely redesign the UI of your app without needing to touch the back-end. 
  
 - no multiple roundtrips to fetch data, and with no reason for over-fetching data, GraphQL is naturally more efficient. This improves performance of your API calls, hence, speeding up your app. 
@@ -26,5 +23,6 @@
 # CONS
 
 - One of the cons is developers can do anything against schema - aliases of the same query to return different bits of information
-- Caching not embedded as in HTTP
-- Error handling and schema validation require client-server libraries as add-ons
+- Caching not embedded as in HTTP - so you have to refetch data (done with Apollo)
+- Error handling and schema validation require client-server libraries as add-ons (or write logger functions)
+- Hack risks due to CSP allowing access to internals of the schema

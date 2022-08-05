@@ -15,6 +15,12 @@ It is an alternative to the REST API - so instead of hitting a URL endpoint and 
 
 GraphQL provides clients the power to ask for exactly what they need and receive the response with what they asked for. With GraphQL you can get all the data that you need within a single request. GraphQL allows you to aggregate queries and fetch all the data in one request, avoiding multiple request-response cycles.
 
+# Introspection
+
+Introspection is the ability to query which resources are available in an API-schema. Introspection allows us to see types, fields, queries and mutations in GrapQL API calls.
+
+`__schema` with the double underscore allows the parsing of the introspection.
+
 As a run-time environment, GraphQL validates, queues and batches, organises and directs data with inbuilt algorithms to make the request-response mechanism fluid and accurate.
 
 It is agnostic of protocols in the service-layer and HTTP (hyper-text-transfer-protocol), SSH, Sockets (using polling and subscriptions), CLI (command line interface) can be used depending on the use case.
@@ -32,12 +38,4 @@ GraphQL came into existence due to the need for better flexibility and efficienc
 Today, GraphQL has become comparable, or an even better alternative to REST APIs with the wide adoption among several Fortune 500 companies and has even replaced REST APIs.
 
 PayPal, Yelp, GitHub and Twitter are early adopters.
-Resources:
 
-GraphQL integrates easily with React [https://app.pluralsight.com/guides/how-to-set-up-graphql-in-a-react-app]
-
-NetNinja [https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f]
-https://www.youtube.com/watch?v=NbKJFRgsw-A
-
-Traversy Media:
-[https://www.youtube.com/watch?v=BcLNfwF04Kw]
