@@ -1,5 +1,4 @@
-From Aditi Ravichandran/ Plural Sight: GraphQL the Big Picture
-[https://app.pluralsight.com/library/courses/graphql-big-picture/table-of-contents]
+# What is GraphQL
 
 Facebook started GraphQL as an internal project. They started the GraphQL project to overcome data fetching issues in their native mobile platform. 
 
@@ -15,7 +14,7 @@ It is an alternative to the REST API - so instead of hitting a URL endpoint and 
 
 GraphQL provides clients the power to ask for exactly what they need and receive the response with what they asked for. With GraphQL you can get all the data that you need within a single request. GraphQL allows you to aggregate queries and fetch all the data in one request, avoiding multiple request-response cycles.
 
-# Introspection
+# What is Introspection in GraphQL
 
 Introspection is the ability to query which resources are available in an API-schema. Introspection allows us to see types, fields, queries and mutations in GrapQL API calls.
 
@@ -38,4 +37,3 @@ GraphQL came into existence due to the need for better flexibility and efficienc
 Today, GraphQL has become comparable, or an even better alternative to REST APIs with the wide adoption among several Fortune 500 companies and has even replaced REST APIs.
 
 PayPal, Yelp, GitHub and Twitter are early adopters.
-

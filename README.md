@@ -7,6 +7,8 @@ Books, authors, book clients and book projects repo using GraphQL-React-MongoDb 
 1. Scaffolding
 2. Scripts
 3. Dbs
+4. CSP
+5. Further documentation
 # Scaffolding:
 Code editor: VS Code
 Prequisites: Install Node.js
@@ -101,3 +103,6 @@ app.use(helmet({
   contentSecurityPolicy: false,
 }));
 ```
+# Further Documentation and Resources
+
+Please see the docs folder and `resources.md` this repo credits use of materials from all of these sources.

@@ -2,6 +2,9 @@
 
 Net Ninja Tutorial (Note this tutorial is dated - the Apollo server section does not include Apollo-3. The React section still depends on class-components rather than hooks)
 
+From Aditi Ravichandran/ Plural Sight: GraphQL the Big Picture
+[https://app.pluralsight.com/library/courses/graphql-big-picture/table-of-contents]
+
 GraphQL integrates easily with React [https://app.pluralsight.com/guides/how-to-set-up-graphql-in-a-react-app]
 
 NetNinja [https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f]
@@ -28,3 +31,5 @@ Mutations: [https://www.youtube.com/watch?v=DU77lbBPfBI&list=PL4cUxeGkcC9iK6Qhn-
 
 Traversy Media:
 [https://www.youtube.com/watch?v=BcLNfwF04Kw]
+
+Integration with React [https://app.pluralsight.com/guides/how-to-set-up-graphql-in-a-react-app]

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaList, FaUser } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+
 // queries
 import { useGetBooksQuery } from "../../../utils/hooks/book/useGetBooksQuery";
 import { GET_BOOKS } from "../../../utils/queries/queries";
@@ -10,7 +10,10 @@ import ErrorHasOccurredComponent from "../../../common/errors/ErrorHasOccurredCo
 import DisplayBook from "./DisplayBook";
 
 const DisplayBookList = () => {
-  const { error, loading, data } = useGetBooksQuery(GET_BOOKS);
+  const { id } = useParams();
+  const { error, loading, data } = useGetBooksQuery(GET_BOOKS,{
+    variables: { id },
+  });
 //  select filter
   const [selected, setSelected] = useState(null);
   const displayBooks = () => {  
@@ -18,34 +21,35 @@ const DisplayBookList = () => {
     if (loading) return <Loading />; 
       return data.books.map((book) => {
         return (
-          <div id='book-details' key={book.id}>
-            <ul
-              onClick={() => {
-                setSelected(book.id);
-              }}
-            >
+        //   <Link
+        //   to={`/authors-and-books/${book.id}`}
+        // >
+          <div id='book-details' key={book.id}  
+          onClick={() => {
+            setSelected(book.id);
+          }}>
+            <ul>
               <li>{book.name} </li>
-            </ul>
+            </ul>    
           </div>
+          // </Link>
         );
       });
     }
   return (
     <div>
-       <Link to='/add-book-form'>
-       <button className='btn-secondary m-3'>
-          <FaList className='icon' />
-          <FaUser className='icon' />
-      Add A Book & Author
-        </button>
-      </Link>
+     
       <ul id='book-list'>
-        <li>{displayBooks(loading, data, error)}</li>
-        <div>{selected && <DisplayBook bookId={selected}  />
-        }   </div>
+       
+        <div>    
+            {selected && <DisplayBook bookId={selected}  />
+        }</div>
+         <li>{displayBooks(loading, data, error)}</li>
       </ul> 
     </div>
   );
 };
 
 export default DisplayBookList;
+
+

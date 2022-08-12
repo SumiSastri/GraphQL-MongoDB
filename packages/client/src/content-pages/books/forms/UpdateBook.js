@@ -4,25 +4,26 @@ import { FaUser } from "react-icons/fa";
 // STEP 1 set up front-end query data by ID for single resource
 import { GET_BOOK_ID } from "../../../utils/queries/queries";
 import { useGetBookIdQuery } from "../../../utils/hooks/book/useGetBookIdQuery";
-// STEP 2 mutate front end data and pass the id of the resource as a prop to component
+// STEP 2 mutate front end data and pass the id as a prop to a parent component
 import { UPDATE_BOOK } from "../../../utils/mutations/book-mutations/updateBook";
 // components
 import ErrorHasOccurredComponent from "../../../common//errors/ErrorHasOccurredComponent";
 import Loading from "../../../common/loading/Loading";
 
-// UPDATE IS CREATE on a specific ID passed as prop from parent DisplayBook
+// STEP 3: pass prop in child - UPDATE IS CREATE on specific id got from parent <DisplayBook/>
 const UpdateBook = ({ bookId }) => {
   const { error, loading, data } = useGetBookIdQuery(bookId);
   // console.log(data, "update book data")
-  // STEP 3 log and check data flows
+  // STEP 4 log and check data flows from parent to child component
 
-  // STEP 4: set local state
+  // STEP 5: reassign queried data to local state 
   // UPDATE IS A PARTIALLY FILLED FORM USING A QUERY FROM DB OF EXISTING DATA
   const [name, setName] = useState(data.book.name);
   const [genre, setGenre] = useState(data.book.genre);
   // console.log(name)
-
-  // STEP 5: once data is flowing correctly create custom function for submit payload with id
+  // STEP 6: check data flow
+  
+  // STEP 7: Create update payload mutate component state of fields to be updated
   const [updateBook] = useMutation(UPDATE_BOOK, {
     variables: {
       name,
@@ -42,7 +43,7 @@ const UpdateBook = ({ bookId }) => {
     ],
   });
 
-  // STEP 6 - call the updateBook function in handle submit - log and check
+  // STEP 8 - call the updateBook function in handle submit - log and check
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Log default book update:", name, genre);
@@ -54,7 +55,7 @@ const UpdateBook = ({ bookId }) => {
     updateBook(name, genre);
     console.log("Log updated book data:", name, genre);
   };
-
+  // STEP 9 - add error and loading components
   if (error)
     return (
       <div>
@@ -68,6 +69,8 @@ const UpdateBook = ({ bookId }) => {
       </div>
     );
 
+      // STEP 10 - form to update target values very similar to create
+      // onSubmit handler will send the updated payload to the backend
   return (
     <>
     <button

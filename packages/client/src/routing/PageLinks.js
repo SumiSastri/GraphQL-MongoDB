@@ -9,7 +9,6 @@ const PageLinks = () => {
             <Link to='/books-and-authors'>
               <li>Books and Authors</li>
             </Link>
-            <Link to='/books-and-authors/:id' />
             <Link to='/book-clients'>
               <li>Book Clients</li>
             </Link>
