@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 4000;
+
 const MONGO_URI = process.env.MONGO_URI
 // const connectDB = require('./config/mongoDb');
 const helmet = require('helmet');
